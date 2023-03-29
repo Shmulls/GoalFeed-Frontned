@@ -5,24 +5,27 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/orb-intro/
 orbs:
   node: circleci/node@4.7
-  
-jobs: 
+
+jobs:
   cicd-tests-front-lint:
-    executor: 
+    executor:
       name: node/default
-    steps: 
-      - checkout 
-      - run: 
-          name: Install npm packages 
+    steps:
+      - checkout
+      - run:
+          name: Install npm packages
           command: npm install
-      - run: 
+      - run:
           name: Run tests
           command: npm run test
-      - run: 
+      - run:
           name: Run Linter
           command: npm run lint
+      - run:
+          name: CD - Deploy static site
+          command: curl "https://api.render.com/deploy/srv-cgi6p3ik728gl5vgikf0?key=snU5xxzyAMM"
 
-workflows: 
-  front-workflow: 
-    jobs: 
+workflows:
+  front-workflow:
+    jobs:
       - cicd-tests-front-lint
