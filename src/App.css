@@ -1,3 +1,4 @@
+/* NAVBAR */
 nav {
   background-color: #333;
   overflow: hidden;
@@ -24,6 +25,8 @@ nav li a {
 nav li a:hover {
   background-color: #111;
 }
+
+/* LOGIN FORM */
 
 form {
   margin: 20px;
