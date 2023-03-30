@@ -1,7 +1,7 @@
 {
   "name": "sw_frontend",
   "version": "0.1.0",
-  "proxy": "https://http://localhost:3001",
+  "proxy": "https://api.render.com/deploy/srv-cgi6uuak728gl5vhp3q0?key=YF3SXjsdHXo",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
