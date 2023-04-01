@@ -24,7 +24,9 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/jsx-props-no-spreading": ["warn"],
     "no-shadow": "off",
+    "camelcase": "off",
     "eslint-disable-next-line": "off",
+    "import/prefer-default-export": "off",
     "jsx-a11y/label-has-associated-control": [
       "error",
       {
