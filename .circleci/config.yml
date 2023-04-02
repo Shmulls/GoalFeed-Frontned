@@ -23,7 +23,7 @@ jobs:
           command: npm run lint
       - run:
           name: CD - Deploy static site
-          command: curl "https://api.render.com/deploy/srv-cgi6p3ik728gl5vgikf0?key=snU5xxzyAMM"
+          command: curl "https://api.render.com/deploy/srv-cgk4qke4dad69r0d2js0?key=dP_sQZkVsOY"
 
 workflows:
   front-workflow:
