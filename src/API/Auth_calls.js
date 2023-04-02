@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://localhost:6000/auth";
+const BASE_URL = "https://sw-project-backend.onrender.com";
 
 export const sendLoginRequest = async (params) => {
   const result = await axios
