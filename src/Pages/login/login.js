@@ -45,7 +45,6 @@ function Login() {
         </label>
         <br />
         <label>
-          Login:
           <input
             type="submit"
             value="Submit"
