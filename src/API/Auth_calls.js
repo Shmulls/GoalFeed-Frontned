@@ -4,9 +4,7 @@ const BASE_URL = "https://sw-project-backend.onrender.com";
 
 export const sendLoginRequest = async (params) => {
   const result = await axios
-    .get(BASE_URL, {
-      params,
-    })
+    .post(`${BASE_URL}/login`, params)
     .catch((error) => {
       console.log(error);
     });
