@@ -10,7 +10,7 @@ export const sendLoginRequest = async (params) => {
     .catch((error) => {
       console.log(error);
     });
-  if (result.status === 200) {
+  if (result && result.status === 200) {
     alert(result.data.message);
   }
 };
