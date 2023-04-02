@@ -20,7 +20,7 @@ function Login() {
   };
 
   const login_msg = async (username, password) => {
-    console.log(`EMAIL:\t${username}\nPASSWORD:\t${password}`);
+    console.log(`USERNAME:\t${username}\nPASSWORD:\t${password}`);
     await sendLoginRequest({
       username,
       password,
