@@ -13,6 +13,10 @@ nav li {
   float: left;
 }
 
+nav li:last-child {
+  float: right;
+}
+
 nav li a {
   display: block;
   color: white;
@@ -23,4 +27,18 @@ nav li a {
 
 nav li a:hover {
   background-color: #111;
+}
+
+.nav .login {
+  float: right;
+}
+
+.nav .login button {
+  background-color: green;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
 }

@@ -27,6 +27,7 @@
     "camelcase": "off",
     "eslint-disable-next-line": "off",
     "import/prefer-default-export": "off",
+    "react/no-unescaped-entities": "off",
     "jsx-a11y/label-has-associated-control": [
       "error",
       {

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { sendLoginRequest } from "../../API/Auth_calls";
 import "./login.css";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -14,17 +16,18 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(`Username: ${username}, Password: ${password}`);
-  };
-
-  const login_msg = async (username, password) => {
-    console.log(`USERNAME:\t${username}\nPASSWORD:\t${password}`);
-    await sendLoginRequest({
-      username,
-      password,
-    });
+    try {
+      await sendLoginRequest({
+        username,
+        password,
+      });
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -45,11 +48,7 @@ function Login() {
         </label>
         <br />
         <label>
-          <input
-            type="submit"
-            value="Submit"
-            onClick={() => login_msg(username, password)}
-          />
+          <input type="submit" value="Submit" />
         </label>
       </form>
     </div>
