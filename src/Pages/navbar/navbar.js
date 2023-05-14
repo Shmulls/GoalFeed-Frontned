@@ -19,6 +19,12 @@ function Navbar() {
         </li>
 
         <li className="nav-item">
+          <Link to="/game" className="nav-link">
+            <span className="link-text">Game</span>
+          </Link>
+        </li>
+
+        <li className="nav-item">
           <Link to="/login" className="nav-link">
             <span className="link-text">Log in</span>
           </Link>
