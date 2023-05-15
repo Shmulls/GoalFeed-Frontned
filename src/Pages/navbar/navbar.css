@@ -1,5 +1,5 @@
 nav {
-  background-color: #333;
+  background-color: none;
   overflow: hidden;
 }
 
@@ -19,14 +19,14 @@ nav li:last-child {
 
 nav li a {
   display: block;
-  color: white;
+  color: rgb(0, 0, 0);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
 nav li a:hover {
-  background-color: #111;
+  background-color: none;
 }
 
 .nav .login {
