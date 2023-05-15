@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:4000";
-// const BASE_URL = "https://sw-project-backend.onrender.com/Auth";
+// const BASE_URL = "http://localhost:4000";
+const BASE_URL = "https://sw-project-backend.onrender.com";
 
 export const sendRegistrationRequest = async (data) => {
   try {
