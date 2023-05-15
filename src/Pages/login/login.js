@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { sendLoginRequest } from "../../API/Auth_calls";
 import "./login.css";
 
 function Login() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -18,13 +18,13 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(`Username: ${username}, Password: ${password}`);
+    console.log(`Email: ${email}, Password: ${password}`);
     try {
       await sendLoginRequest({
-        username,
+        email,
         password,
       });
-      navigate("/login");
+      navigate("/dashboard");
     } catch (error) {
       console.error(error);
     }
@@ -34,8 +34,8 @@ function Login() {
     <div className="form">
       <form onSubmit={handleSubmit}>
         <label>
-          Username:
-          <input type="text" value={username} onChange={handleUsernameChange} />
+          Email:
+          <input type="email" value={email} onChange={handleEmailChange} />
         </label>
         <br />
         <label>
@@ -48,9 +48,12 @@ function Login() {
         </label>
         <br />
         <label>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Login" />
         </label>
       </form>
+      <p>
+        Don't have an account? <Link to="/register">Sign up</Link>
+      </p>
     </div>
   );
 }
