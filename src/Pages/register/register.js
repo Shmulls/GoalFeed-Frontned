@@ -3,12 +3,20 @@ import { useNavigate } from "react-router-dom";
 import { sendRegistrationRequest } from "../../API/Auth_calls";
 import "./register.css";
 
+function checkPassword(password) {
+  // Password regex pattern to match the specified conditions
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/;
+  return passwordRegex.test(password);
+}
+
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [Vpassword, setVPassword] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [gender, setGender] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const navigate = useNavigate();
 
   const handleUsernameChange = (event) => {
@@ -23,6 +31,10 @@ function Register() {
     setPassword(event.target.value);
   };
 
+  const handleVPasswordChange = (event) => {
+    setVPassword(event.target.value);
+  };
+
   const handleDateOfBirthChange = (event) => {
     setDateOfBirth(event.target.value);
   };
@@ -31,27 +43,49 @@ function Register() {
     setGender(event.target.value);
   };
 
+  const handlePhoneNumberChange = (event) => {
+    setPhoneNumber(event.target.value);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(
-      `Username: ${username}, Email: ${email}, Password: ${password}, Date of Birth: ${dateOfBirth}, Gender: ${gender}`,
+      `Username: ${username}, Email: ${email}, Password: ${password}, Date of Birth: ${dateOfBirth}, Gender: ${gender}, Phone Number: ${phoneNumber}`
     );
-    try {
-      await sendRegistrationRequest({
-        username,
-        email,
-        password,
-        dateOfBirth,
-        gender,
-      });
-      navigate("/login");
-    } catch (error) {
-      console.error(error);
+
+    if (
+      checkPassword(password) &&
+      password === Vpassword
+    ) {
+      try {
+        await sendRegistrationRequest({
+          username,
+          email,
+          password,
+          dateOfBirth,
+          gender,
+          phoneNumber,
+        });
+        navigate("/login");
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      // Password verification failed
+      alert(
+        JSON.stringify({
+          message:
+            "Password verification failed. Make sure the password meets the requirements and matches the verification password.",
+        })
+      );
+      setPassword("");
+      setVPassword("");
     }
   };
 
   return (
     <div className="form">
+      <div className="background-image"></div>
       <form onSubmit={handleSubmit}>
         <label>
           Username:
@@ -60,15 +94,33 @@ function Register() {
         <br />
         <label>
           Email:
-          <input type="email" value={email} onChange={handleEmailChange} />
+          <input type="remail" value={email} onChange={handleEmailChange} />
         </label>
         <br />
         <label>
           Password:
           <input
-            type="password"
+            type="rpassword"
             value={password}
             onChange={handlePasswordChange}
+          />
+        </label>
+        <br />
+        <label>
+          Verification Password:
+          <input
+            type="password"
+            value={Vpassword}
+            onChange={handleVPasswordChange}
+          />
+        </label>
+        <br />
+        <label>
+          Phone Number:
+          <input
+            type="tel"
+            value={phoneNumber}
+            onChange={handlePhoneNumberChange}
           />
         </label>
         <br />
@@ -83,7 +135,7 @@ function Register() {
         <br />
         <label>
           Gender:
-          <select value={gender} onChange={handleGenderChange}>
+          <select type="gender" value={gender} onChange={handleGenderChange}>
             <option value="">Select</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
