@@ -51,7 +51,7 @@ function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(
-      `Username: ${username}, Email: ${email}, Password: ${password}, Date of Birth: ${dateOfBirth}, Gender: ${gender}, Phone Number: ${phoneNumber}`,
+      `Username: ${username}, Email: ${email}, Password: ${password}, Date of Birth: ${dateOfBirth}, Gender: ${gender}, Phone Number: ${phoneNumber}`
     );
 
     if (checkPassword(password) && password === Vpassword) {
@@ -74,7 +74,7 @@ function Register() {
         JSON.stringify({
           message:
             "Password verification failed. Make sure the password meets the requirements and matches the verification password.",
-        }),
+        })
       );
       setPassword("");
       setVPassword("");
@@ -92,7 +92,7 @@ function Register() {
         <br />
         <label>
           Email:
-          <input type="remail" value={email} onChange={handleEmailChange} />
+          <input type="email" value={email} onChange={handleEmailChange} />
         </label>
         <br />
         <label>
@@ -133,7 +133,7 @@ function Register() {
         <br />
         <label>
           Gender:
-          <select type="gender" value={gender} onChange={handleGenderChange}>
+          <select value={gender} onChange={handleGenderChange}>
             <option value="">Select</option>
             <option value="male">Male</option>
             <option value="female">Female</option>

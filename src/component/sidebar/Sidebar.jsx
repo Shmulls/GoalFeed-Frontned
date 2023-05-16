@@ -1,3 +1,4 @@
+import React from "react";
 import "./sidebar.css";
 
 export default function Sidebar() {
@@ -5,8 +6,12 @@ export default function Sidebar() {
     <div className="side-bar">
       <div className="side-bar-container">
         <div className="btn-container">
-          <button className="sider-bar-btn">Game</button>
-          <button className="sider-bar-btn">sttings</button>
+          <button className="side-bar-btn" type="button">
+            Game
+          </button>
+          <button className="side-bar-btn" type="button">
+            Settings
+          </button>
         </div>
       </div>
     </div>

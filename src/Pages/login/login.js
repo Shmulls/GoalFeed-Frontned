@@ -44,7 +44,7 @@ function Login() {
         JSON.stringify({
           message:
             "Password should have at least one uppercase character, one lowercase character, one digit/number, one special character, and be between 8 and 12 characters.",
-        }),
+        })
       );
       setPassword(""); // Clear the password field
     }
@@ -71,7 +71,7 @@ function Login() {
             />
           </label>
           <p>
-            Forgot your password? <Link to="">reset password</Link>
+            Forgot your password? <Link to="/">reset password</Link>
           </p>
           <br />
           <label>

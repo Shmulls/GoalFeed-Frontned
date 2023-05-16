@@ -1,3 +1,4 @@
+import React from "react";
 import "./post.css";
 
 export default function Post() {
@@ -8,8 +9,8 @@ export default function Post() {
           <p>tal sinay</p>
         </div>
         <p>my name is sinay!!</p>
-        <div className="buttom-like-container">
-          <button>like</button>
+        <div className="button-like-container">
+          <button type="button">like</button>
         </div>
       </div>
     </div>
