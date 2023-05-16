@@ -1,10 +1,10 @@
-.feed-bar{
-    width: 60%;
-    margin: 0 auto;
-    background-color: red;
-    padding: 10px 20px;
+.feed-bar {
+  width: 60%;
+  margin: 0 auto;
+  background-color: red;
+  padding: 10px 20px;
 }
 
-.create-post-bottum-container{
-    text-align: right;
+.create-post-bottum-container {
+  text-align: right;
 }

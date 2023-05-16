@@ -7,12 +7,11 @@ import Rightbar from "../../component/rightbar/Rightbar";
 function Home1() {
   return (
     <div className="home-page">
-    <div className="home-page-container">
-      <Sidebar />
-      <Feed />
-      <Rightbar />
-      
-    </div>
+      <div className="home-page-container">
+        <Sidebar />
+        <Feed />
+        <Rightbar />
+      </div>
     </div>
   );
 }

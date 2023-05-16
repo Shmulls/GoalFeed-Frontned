@@ -5,7 +5,8 @@ import "./register.css";
 
 function checkPassword(password) {
   // Password regex pattern to match the specified conditions
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/;
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/;
   return passwordRegex.test(password);
 }
 
@@ -50,13 +51,10 @@ function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(
-      `Username: ${username}, Email: ${email}, Password: ${password}, Date of Birth: ${dateOfBirth}, Gender: ${gender}, Phone Number: ${phoneNumber}`
+      `Username: ${username}, Email: ${email}, Password: ${password}, Date of Birth: ${dateOfBirth}, Gender: ${gender}, Phone Number: ${phoneNumber}`,
     );
 
-    if (
-      checkPassword(password) &&
-      password === Vpassword
-    ) {
+    if (checkPassword(password) && password === Vpassword) {
       try {
         await sendRegistrationRequest({
           username,
@@ -76,7 +74,7 @@ function Register() {
         JSON.stringify({
           message:
             "Password verification failed. Make sure the password meets the requirements and matches the verification password.",
-        })
+        }),
       );
       setPassword("");
       setVPassword("");

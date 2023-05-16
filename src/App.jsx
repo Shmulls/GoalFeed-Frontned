@@ -9,18 +9,17 @@ import Home1 from "./Pages/home/Home1";
 
 function App() {
   return (
-    
     <div className="app">
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/home" element={<Home1 />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/game" element={<Game />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/home" element={<Home1 />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/game" element={<Game />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

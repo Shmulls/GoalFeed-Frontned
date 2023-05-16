@@ -1,12 +1,12 @@
-.side-bar{
-    background-color: rgb(83, 82, 79);
-    width: 15%;
-    height: 100vh;
+.side-bar {
+  background-color: rgb(83, 82, 79);
+  width: 15%;
+  height: 100vh;
 }
-.side-bar-container{
-    width: 100%;
+.side-bar-container {
+  width: 100%;
 }
-.btn-container{
-    display: flex;
-    flex-direction: column;
+.btn-container {
+  display: flex;
+  flex-direction: column;
 }
