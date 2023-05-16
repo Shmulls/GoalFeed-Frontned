@@ -1,7 +1,10 @@
-.side{
-    color: aqua;
-    flex: 3;
+
+.home-page{
+/* margin: 0 auto; */
 }
-.w{
-    color: blanchedalmond;
+
+.home-page-container{
+    display: flex;
+    justify-content: space-between;
 }
+

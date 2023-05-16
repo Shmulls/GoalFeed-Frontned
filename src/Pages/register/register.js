@@ -100,7 +100,7 @@ function Register() {
         <label>
           Password:
           <input
-            type="rpassword"
+            type="password"
             value={password}
             onChange={handlePasswordChange}
           />
