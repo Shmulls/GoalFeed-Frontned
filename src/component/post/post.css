@@ -1,0 +1,15 @@
+.post{
+    width: 60%;
+margin:  0 auto;
+padding: 10px 20px;
+background-color: blue;
+}
+
+.user-name-container{
+  
+    text-align: left;
+}
+
+.buttom-like-container{
+    text-align: right;
+}

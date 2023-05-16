@@ -13,7 +13,7 @@
   }
   label{
     font-size: 18px;
-    margin-top: 0px;
+    margin-top: -1px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -21,8 +21,8 @@
   select[type="gender"],
   input[type="text"],
   input[type="remail"],
-  input[type="rpassword"],
-  input[type="Vpassword"],
+  input[type="password"],
+  
   input[type="tel"],
   input[type="date"] {
   /* margin-left: .5rem; */
