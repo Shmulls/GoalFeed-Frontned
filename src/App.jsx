@@ -6,6 +6,8 @@ import About from "./Pages/About/about";
 import Game from "./Pages/game/game";
 import Register from "./Pages/register/register";
 import Home1 from "./Pages/home/Home1";
+import Profile from "./Pages/profile/Profile";
+import Post from "./component/post/Post";
 
 function App() {
   return (
@@ -18,7 +20,10 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/game" element={<Game />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/post" element={<Post />} />
         </Routes>
+        
       </Router>
     </div>
   );
