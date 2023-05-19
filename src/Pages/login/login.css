@@ -1,5 +1,5 @@
 .frame {
-  background-color: #3d34344f;
+  /* background-color: #3d34344f;
   color: #fff;
   border: 0px solid #ccc;
   padding: 20px;
@@ -8,20 +8,33 @@
   display: flex;
   border-radius: 20px;
   justify-content: center;
+  align-items: center; */
+
+  background-color: #3d34344f;
+  color: #fff;
+  border: 0px solid #ccc;
+  display: flex;
+  border-radius: 20px;
+  justify-content: center;
   align-items: center;
 }
-/* .logo{
-padding: 1px;
-} */
 .fform {
-  /* background-color: #000; */
-
-  display: inline-block;
+  /* display: inline-block;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   margin-top: 40px;
-  margin: 0 auto;
+  margin: 0 auto; */
+
+  display: inline-block;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 18px;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 60px;
+  width: 100%;
+  
 }
 .background-image {
   background-image: url("/src/Pages/login/loginPhoto.jpg");
@@ -44,31 +57,27 @@ padding: 1px;
   margin-left: 50px;
 } */
 
-/* input[type="email"],
+input[type="email"],
 input[type="password"] {
-  padding: 8px;
-  display: flex;
-  font-size: 14px;
-  border: 1px solid #afa1a1;
   border-radius: 10px;
-  margin-top: 5px;
-  width: 120%;
-} */
-
+}
+.logo {
+  width: 80%;
+}
 input[type="submit"] {
-  background-color: #2ea132;
+  background-color: #2ea132b8;
   font-size: 16px;
   color: white;
   padding: 12px 20px;
   border: none;
   border-radius: 15px;
   cursor: pointer;
-  margin-top: 15px;
-  width: 100%;
+  margin-left: 50px;
+  width: 50%;
 }
 
 input[type="submit"]:hover {
-  background-color: #45a049;
+  background-color: #2ea132b8;
 }
 
 /* var pass=setPassword(event.target.value);
