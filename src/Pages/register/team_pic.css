@@ -1,0 +1,25 @@
+.team-pic{
+    background-color: #3d34344f;
+    color: #fff;
+    border: 0px solid #ccc;
+    padding: 10px;
+    width: 400px;
+    margin: 0 auto;
+    display: flex;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+
+}
+.background-image {
+    background-image: url("/src/Pages/login/loginPhoto.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px); /* Apply blur effect */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }

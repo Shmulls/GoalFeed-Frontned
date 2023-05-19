@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { sendRegistrationRequest } from "../../API/Auth_calls";
 import "./register.css";
+import logo from "../login/goolfeedlogo.png";
 
 function checkPassword(password) {
   // Password regex pattern to match the specified conditions
@@ -64,7 +65,7 @@ function Register() {
           gender,
           phoneNumber,
         });
-        navigate("/login");
+        navigate("/team_pic");
       } catch (error) {
         console.error(error);
       }
@@ -80,70 +81,85 @@ function Register() {
       setVPassword("");
     }
   };
+  const handleBackToLogin = () => {
+    navigate("/login");
+  };
+
+  // const handleMoveToHomePage = () => {
+  //   navigate("/home");
+  // };
 
   return (
-    <div className="form">
+    <div className="frame">
       <div className="background-image"></div>
       <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input type="text" value={username} onChange={handleUsernameChange} />
-        </label>
-        <br />
-        <label>
-          Email:
-          <input type="email" value={email} onChange={handleEmailChange} />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </label>
-        <br />
-        <label>
-          Verification Password:
-          <input
-            type="password"
-            value={Vpassword}
-            onChange={handleVPasswordChange}
-          />
-        </label>
-        <br />
-        <label>
-          Phone Number:
-          <input
-            type="tel"
-            value={phoneNumber}
-            onChange={handlePhoneNumberChange}
-          />
-        </label>
-        <br />
-        <label>
-          Date of Birth:
-          <input
-            type="date"
-            value={dateOfBirth}
-            onChange={handleDateOfBirthChange}
-          />
-        </label>
-        <br />
-        <label>
-          Gender:
-          <select value={gender} onChange={handleGenderChange}>
-            <option value="">Select</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-        </label>
-        <br />
-        <label>
-          <input type="submit" value="Register" />
-        </label>
+        <div className="form">
+          <img className="logo" src={logo} alt="Our Logo" width={600} />
+          <div>
+            Username:
+            <input type="username" value={username} onChange={handleUsernameChange} />
+          </div>
+          <br />
+          <div>
+            Email:
+            <input type="email" value={email} onChange={handleEmailChange} />
+          </div>
+          <br />
+          <div>
+            Password:
+            <input
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
+            />
+          </div>
+          <br />
+          <div>
+            Verification Password:
+            <input
+              type="password"
+              value={Vpassword}
+              onChange={handleVPasswordChange}
+            />
+          </div>
+          <br />
+          <div>
+            Phone Number:
+            <input
+              type="tel"
+              value={phoneNumber}
+              onChange={handlePhoneNumberChange}
+            />
+          </div>
+          <br />
+          <div>
+            Date of Birth:
+            <input
+              type="date"
+              value={dateOfBirth}
+              onChange={handleDateOfBirthChange}
+            />
+          </div>
+          <br />
+          <div>
+            Gender:
+            <select type="gender" value={gender} onChange={handleGenderChange}>
+              <option value="">Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <br />
+          <div className="buttons">
+            <button type="button" onClick={handleBackToLogin}>
+              Back
+            </button>
+            <button type="submit">
+              Next
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );

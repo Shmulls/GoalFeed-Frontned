@@ -30,7 +30,7 @@ export default function FeedBubble() {
         <form onSubmit={handlePostSubmit}>
           <div className="create-post-text-container">
             <img alt="Post" />
-            <input type="text" value={content} onChange={handlePostChange} placeholder="write post" />
+            <input type="post" value={content} onChange={handlePostChange} placeholder="write post" />
           </div>
           <div className="create-post-bottom-container">
             <button className="create-post-btn">Share</button>

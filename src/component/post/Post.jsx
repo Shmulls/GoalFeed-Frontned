@@ -11,7 +11,7 @@ export default function Post() {
         </div>
         <p>my name is sinay!!</p>
         <div className="button-like-container">
-          <button type="button">like</button>
+          <button className="post-btn">like</button>
         </div>
       </div>
     </div>

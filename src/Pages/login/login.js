@@ -54,29 +54,29 @@ function Login() {
     <div className="frame">
       <div className="background-image"></div>
 
-      <div className="form">
+      <div className="fform">
         <img className="logo" src={logo} alt="Our Logo" width={600} />
         <form onSubmit={handleSubmit}>
-          <label>
+          <div>
             Email:
             <input type="email" value={email} onChange={handleEmailChange} />
-          </label>
+          </div>
           <br />
-          <label>
+          <div>
             Password:
             <input
               type="password"
               value={password}
               onChange={handlePasswordChange}
             />
-          </label>
+          </div>
           <p>
             Forgot your password? <Link to="/">reset password</Link>
           </p>
           <br />
-          <label>
+          <div>
             <input type="submit" value="Login" />
-          </label>
+          </div>
         </form>
         <p>
           Don't have an account? <Link to="/register">Sign up</Link>
