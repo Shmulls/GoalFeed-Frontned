@@ -39,8 +39,8 @@ export default function Team_pic() {
         <div className="team-pic">
             <div className="background-image"></div>
             <div className="team-pic-container">
-              <img className="logo" src={logo} alt="Our Logo" />
-              <h2>Choose your favorite team</h2>
+              <img className="logo2" src={logo} alt="Our Logo" />
+              <h2 style={{padding: "10px 20px", margin:"5px", textAlign: "center"}}>Choose your favorite team </h2>
               <form onSubmit={handleSubmit}>
                 <div className="team-pic-teams">
                     <input type="image" src={MHFC} width={90} />
@@ -48,18 +48,16 @@ export default function Team_pic() {
                     <input type="image" src={AHFC} width={90} />
                     <input type="image" src={FCBJ} width={90} />
                     <input type="image" src={HBSFC} width={90} />
-                    <input type="image" src={HHFC} width={90} />
-                    <input type="image" src={HJFC} width={90} />
-                    <input type="image" src={HTA} width={90} />
                     <input type="image" src={MNFC} width={90} />
+                    <input type="image" src={HJFC} width={90} />
+                    <input type="image" src={HHFC} width={90} />
+                    <input type="image" src={HTA} width={90} />
                     <input type="image" src={MTA} width={90} />
-
                 </div>
-
+                <div><input type="register" value="Register" /></div>
                 </form>
 
             
-
             </div>
          
       </div>

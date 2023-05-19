@@ -22,6 +22,7 @@
   margin: 0 auto;
 } */
 .form{
+
   display: inline-block;
   flex-direction: column;
   justify-content: center;
