@@ -24,7 +24,6 @@ jobs:
       - run:
           name: CD - Deploy static site
           command: curl "https://api.render.com/deploy/srv-cgk4qke4dad69r0d2js0?key=dP_sQZkVsOY"
-
 workflows:
   front-workflow:
     jobs:
