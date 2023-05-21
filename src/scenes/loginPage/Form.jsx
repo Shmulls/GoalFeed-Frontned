@@ -91,15 +91,18 @@ const Form = () => {
   const register = async (values, onSubmitProps) => {
     values.team = selectedTeam;
     const formData = new FormData();
-    for (let value in values) {
-      formData.append(value, values[value]);
-    }
+
+    Object.entries(values).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
     formData.append("picturePath", values.picture.name);
 
     const savedUserResponse = await fetch(`${BASE_URL}/auth/register`, {
       method: "POST",
       body: formData,
     });
+
     const savedUser = await savedUserResponse.json();
     onSubmitProps.resetForm();
 
