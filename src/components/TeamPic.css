@@ -1,0 +1,4 @@
+.team-pic-teams button.selected {
+  border: 2px solid rgb(0, 183, 255); /* Add your desired border style */
+  /* Add any other styles to indicate the selected state */
+}
