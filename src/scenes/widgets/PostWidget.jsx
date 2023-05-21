@@ -3,15 +3,26 @@ import {
   FavoriteBorderOutlined,
   FavoriteOutlined,
   ShareOutlined,
+  EditOutlined,
+  DeleteOutlined,
 } from "@mui/icons-material";
 import BASE_URL from "back_url";
-import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Divider,
+  IconButton,
+  Typography,
+  useTheme,
+  TextField,
+  Button,
+} from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import Friend from "components/Friend";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPost } from "state";
+import { setPost, removePost } from "state";
+import EditDialog from "components/EditDialog";
 
 const PostWidget = ({
   postId,
@@ -48,6 +59,63 @@ const PostWidget = ({
     dispatch(setPost({ post: updatedPost }));
   };
 
+  const deletePost = async () => {
+    const response = await fetch(`${BASE_URL}/posts/${postId}/delete-post`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    // If the request was successful, remove the post from your state
+    if (response.ok) {
+      // You will need to implement this `removePost` action in your Redux setup
+      dispatch(removePost({ postId }));
+    } else {
+      // Handle error...
+    }
+  };
+
+  const editPost = async (newDescription) => {
+    const response = await fetch(`${BASE_URL}/posts/${postId}/edit`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ description: newDescription }),
+    });
+
+    if (response.ok) {
+      const updatedPost = await response.json();
+      dispatch(setPost({ post: updatedPost }));
+    } else {
+      // Handle error...
+    }
+  };
+
+  const [open, setOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [newDescription, setNewDescription] = useState(description);
+
+  const handleChange = (event) => {
+    setNewDescription(event.target.value);
+  };
+
+  const handleOpen = () => {
+    setIsEditing(true);
+  };
+
+  const handleClose = () => {
+    setIsEditing(false);
+  };
+
+  const handleSave = async (newDescription) => {
+    await editPost(newDescription);
+    handleClose();
+  };
+
   return (
     <WidgetWrapper m="2rem 0">
       <Friend
@@ -56,12 +124,28 @@ const PostWidget = ({
         subtitle={location}
         userPicturePath={userPicturePath}
       />
-      <Typography color={main} sx={{ mt: "1rem" }}>
-        {description}
-      </Typography>
+      {isEditing ? (
+        <>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="New Description"
+            type="text"
+            fullWidth
+            value={newDescription}
+            onChange={handleChange}
+          />
+          <Button onClick={() => handleSave(newDescription)}>Save</Button>
+        </>
+      ) : (
+        <Typography color={main} sx={{ mt: "1rem" }}>
+          {description}
+        </Typography>
+      )}
       {picturePath && (
         <img
           width="100%"
+          x
           height="auto"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
@@ -80,13 +164,23 @@ const PostWidget = ({
             </IconButton>
             <Typography>{likeCount}</Typography>
           </FlexBetween>
-
-          <FlexBetween gap="0.3rem">
-            <IconButton onClick={() => setIsComments(!isComments)}>
-              <ChatBubbleOutlineOutlined />
-            </IconButton>
-            <Typography>{comments.length}</Typography>
-          </FlexBetween>
+          {loggedInUserId === postUserId && (
+            <FlexBetween gap="0.3rem">
+              <IconButton onClick={deletePost}>
+                <DeleteOutlined />
+              </IconButton>
+              <IconButton onClick={handleOpen}>
+                <EditOutlined />
+              </IconButton>
+              <EditDialog
+                isOpen={open}
+                onClose={handleClose}
+                onSave={handleSave}
+                initialDescription={description}
+              />
+              {/* {isEditing && <Button onClick={handleSave}>Save</Button>} */}
+            </FlexBetween>
+          )}
         </FlexBetween>
 
         <IconButton>
@@ -109,5 +203,4 @@ const PostWidget = ({
     </WidgetWrapper>
   );
 };
-
 export default PostWidget;

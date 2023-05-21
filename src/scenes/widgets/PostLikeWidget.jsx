@@ -1,39 +1,27 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPosts } from "state";
 import PostWidget from "./PostWidget";
 import BASE_URL from "back_url";
+import { getPostiLikes } from "state";
 
-const PostsWidget = ({ userId, isProfile = false }) => {
+const PostLike = ({ userId, isProfile = false }) => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const token = useSelector((state) => state.token);
 
-  const getPosts = async () => {
+  const getLikes = async () => {
     const response = await fetch(`${BASE_URL}/posts}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
     let data = await response.json();
     data = data.reverse(); // reverse the array
-    dispatch(setPosts({ posts: data }));
-  };
-
-  const getUserPosts = async () => {
-    const response = await fetch(`${BASE_URL}/posts/${userId}/posts`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    let data = await response.json();
-    data = data.reverse(); // reverse the array
-    dispatch(setPosts({ posts: data }));
+    dispatch(getPostiLikes({ posts: data }));
   };
 
   useEffect(() => {
     if (isProfile) {
-      getUserPosts();
-    } else {
-      getPosts();
+      getLikes();
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -70,4 +58,4 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   );
 };
 
-export default PostsWidget;
+export default PostLike;

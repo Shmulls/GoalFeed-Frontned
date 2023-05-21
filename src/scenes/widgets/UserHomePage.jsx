@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BASE_URL from "back_url";
 
-const UserWidget = ({ userId, picturePath }) => {
+const UserHomePage = ({ userId, picturePath }) => {
   const [user, setUser] = useState(null);
   const { palette } = useTheme();
   const navigate = useNavigate();
@@ -67,24 +67,8 @@ const UserWidget = ({ userId, picturePath }) => {
         </FlexBetween>
         <ManageAccountsOutlined />
       </FlexBetween>
-
-      <Divider />
-
-      <WidgetWrapper>
-        <Box p="1rem 0">
-          <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
-            <Typography color={medium}>
-              <img src={imagePath} alt={team} />
-            </Typography>
-          </Box>
-          <Box display="flex" alignItems="center" gap="1rem">
-            <PhoneOutlined fontSize="large" sx={{ color: main }} />
-            <Typography color={medium}>{phoneNumber}</Typography>
-          </Box>
-        </Box>
-      </WidgetWrapper>
     </WidgetWrapper>
   );
 };
 
-export default UserWidget;
+export default UserHomePage;

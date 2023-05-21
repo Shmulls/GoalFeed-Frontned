@@ -39,10 +39,29 @@ export const authSlice = createSlice({
       });
       state.posts = updatedPosts;
     },
+    removePost: (state, action) => {
+      const updatedPosts = state.posts.filter(
+        (post) => post._id !== action.payload.postId
+      );
+      state.posts = updatedPosts;
+    },
+    getPostiLikes: (state, action) => {
+      const likedPosts = state.posts.filter((post) => {
+        return state.user.userId in post.likes;
+      });
+      // Use the 'likedPosts' array as needed
+    },
   },
 });
 
 export const {
- setMode, setLogin, setLogout, setFriends, setPosts, setPost,
+  setMode,
+  setLogin,
+  setLogout,
+  setFriends,
+  setPosts,
+  setPost,
+  removePost,
+  getPostiLikes,
 } = authSlice.actions;
 export default authSlice.reducer;

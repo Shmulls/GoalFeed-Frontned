@@ -45,6 +45,7 @@
     "arrow-body-style": "off",
     "react/self-closing-comp": "off",
     "react/jsx-pascal-case": "off",
+    "linebreak-style": ["error", "unix"],
     "no-restricted-syntax": [
       "error",
       "ForInStatement",
