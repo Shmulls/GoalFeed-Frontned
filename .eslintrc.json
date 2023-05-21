@@ -4,7 +4,7 @@
     "es2021": true,
     "jest": true
   },
-  "extends": ["plugin:react/recommended", "airbnb", "react-hooks"],
+  "extends": ["plugin:react/recommended", "airbnb"],
   "overrides": [],
   "settings": {
     "version": "detect"
