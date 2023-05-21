@@ -35,6 +35,16 @@
     "spaced-comment": "off",
     "react/no-unescaped-entities": "off",
     "react-hooks/exhaustive-deps": "off",
+    "operator-linebreak": "off",
+    "react/jsx-curly-newline": "off",
+    "implicit-arrow-linebreak": "off",
+    "prefer-const": "off",
+    "guard-for-in": "off",
+    "no-unused-vars": "off",
+    "react/function-component-definition": "off",
+    "arrow-body-style": "off",
+    "react/self-closing-comp": "off",
+
     "jsx-a11y/label-has-associated-control": [
       "error",
       {
