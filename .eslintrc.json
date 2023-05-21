@@ -44,6 +44,14 @@
     "react/function-component-definition": "off",
     "arrow-body-style": "off",
     "react/self-closing-comp": "off",
+    "allowNamespace": "false",
+    "react/jsx-pascal-case": "off",
+    "no-restricted-syntax": [
+      "error",
+      "ForInStatement",
+      "LabeledStatement",
+      "WithStatement"
+    ],
 
     "jsx-a11y/label-has-associated-control": [
       "error",
