@@ -49,7 +49,6 @@ const UserWidget = ({ userId, picturePath }) => {
     friends,
   } = user;
 
-  /*const imagePath = require(`../assets/${teamPic}.png`).default;*/
   const imagePath = `public/assets/${teamPic}.png`;
 
   return (
@@ -89,7 +88,7 @@ const UserWidget = ({ userId, picturePath }) => {
           <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
             <LocationOnOutlined fontSize="large" sx={{ color: main }} />
             <Typography color={medium}>
-              <img src={imagePath.default} alt="AFC" />
+              <img src={imagePath} alt="AFC" />
             </Typography>
           </Box>
           <Box display="flex" alignItems="center" gap="1rem">
