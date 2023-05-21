@@ -50,7 +50,7 @@ const UserWidget = ({ userId, picturePath }) => {
   } = user;
 
   /*const imagePath = require(`../assets/${teamPic}.png`).default;*/
-  const imagePath = `public/assets/${teamPic}.png`.default;
+  const imagePath = `public/assets/${teamPic}.png`;
 
   return (
     <WidgetWrapper>
