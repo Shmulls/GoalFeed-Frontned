@@ -1,4 +1,4 @@
-const BASE_URL = "http://sw-project-backend.onrender.com";
+const BASE_URL = "https://sw-project-backend.onrender.com";
 
 export default BASE_URL;
 //
