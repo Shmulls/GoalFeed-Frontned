@@ -65,7 +65,7 @@ const UserHomePage = ({ userId, picturePath }) => {
             <Typography color={medium}>{friends.length} friends</Typography>
           </Box>
         </FlexBetween>
-        <ManageAccountsOutlined />
+        {/* <ManageAccountsOutlined /> */}
       </FlexBetween>
     </WidgetWrapper>
   );

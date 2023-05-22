@@ -52,6 +52,10 @@ export const authSlice = createSlice({
       console.log(likedPosts);
       // Use the 'likedPosts' array as needed
     },
+    getUserId: (state, action) => {
+      state.user = action.payload.user;
+      return state.user.userId;
+    },
   },
 });
 
@@ -64,5 +68,6 @@ export const {
   setPost,
   removePost,
   getPostiLikes,
+  getUserId,
 } = authSlice.actions;
 export default authSlice.reducer;
