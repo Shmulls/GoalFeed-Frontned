@@ -67,19 +67,26 @@ const UserWidget = ({ userId, picturePath }) => {
         </FlexBetween>
         <ManageAccountsOutlined />
       </FlexBetween>
-
       <Divider />
-
       <WidgetWrapper>
-        <Box p="1rem 0">
-          <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
-            <Typography color={medium}>
-              <img src={imagePath} alt={team} />
-            </Typography>
-          </Box>
+        <Box p="0rem 0">
           <Box display="flex" alignItems="center" gap="1rem">
             <PhoneOutlined fontSize="large" sx={{ color: main }} />
             <Typography color={medium}>{phoneNumber}</Typography>
+          </Box>
+          <br></br>
+          <Divider />
+          <br></br>
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center" // Add this style to center the image horizontally
+            gap="1rem"
+            mb="0.5rem"
+          >
+            <Typography color={medium}>
+              <img src={imagePath} alt={team} width="130" height="130" />
+            </Typography>
           </Box>
         </Box>
       </WidgetWrapper>
