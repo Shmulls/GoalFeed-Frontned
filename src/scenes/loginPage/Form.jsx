@@ -18,6 +18,7 @@ import FlexBetween from "components/FlexBetween";
 import BASE_URL from "back_url";
 import Team_pic from "components/TeamPic";
 import ForgotPassword from "components/ForgotPassword";
+import "./form.css"
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
@@ -212,7 +213,7 @@ const Form = () => {
                     {({ getRootProps, getInputProps }) => (
                       <Box
                         {...getRootProps()}
-                        border={`2px dashed ${palette.primary.main}`}
+                        border={`2px dashed ${palette.success.main}`}
                         p="1rem"
                         sx={{ "&:hover": { cursor: "pointer" } }}
                       >
@@ -279,12 +280,13 @@ const Form = () => {
               </Box>
             )}
 
-            <Button
+            <Button 
               type="submit"
               variant="contained"
               size="large"
-              color="primary"
-              sx={{ gridColumn: "span 4" }}
+              color="success"
+              sx={{ gridColumn: "span 4",
+              backgroundColor: "#4caf50", }}
             >
               {isLogin ? "Login" : "Register"}
             </Button>
@@ -300,11 +302,11 @@ const Form = () => {
               }}
               sx={{
                 textDecoration: "underline",
-                color: palette.primary.main,
+                color: 'palette.success.main',
                 gridColumn: "span 4",
                 "&:hover": {
                   cursor: "pointer",
-                  color: palette.primary.light,
+                  color: palette.success.dark,
                 },
               }}
             >
@@ -317,11 +319,11 @@ const Form = () => {
             onClick={handleForgotPasswordDialog}
             sx={{
               textDecoration: "underline",
-              color: palette.primary.main,
+              color: palette.primary,
               gridColumn: "span 4",
               "&:hover": {
                 cursor: "pointer",
-                color: palette.primary.light,
+                color: palette.success.dark,
               },
             }}
           >
