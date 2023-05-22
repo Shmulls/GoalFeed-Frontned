@@ -2,27 +2,28 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PostWidget from "./PostWidget";
 import BASE_URL from "back_url";
-import { getPostiLikes } from "state";
+// import { getPostiLikes } from "state";
+import { setPosts } from "state";
 
-const PostLike = ({ userId, isProfile = false }) => {
+const PostLikeWidget = ({ userId, isProfile = false }) => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const token = useSelector((state) => state.token);
 
   const getLikes = async () => {
-    const response = await fetch(`${BASE_URL}/posts}`, {
+    const response = await fetch(`${BASE_URL}/posts/${userId}/posts-ilike`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
     let data = await response.json();
     data = data.reverse(); // reverse the array
-    dispatch(getPostiLikes({ posts: data }));
+    dispatch(setPosts({ posts: data }));
   };
 
   useEffect(() => {
-    if (isProfile) {
-      getLikes();
-    }
+    // if (isProfile) {
+    getLikes();
+    // }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -58,4 +59,4 @@ const PostLike = ({ userId, isProfile = false }) => {
   );
 };
 
-export default PostLike;
+export default PostLikeWidget;

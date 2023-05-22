@@ -84,7 +84,9 @@ const ProfilePage = () => {
           {selectedWidget === "posts" && (
             <PostsWidget userId={userId} isProfile />
           )}
-          {selectedWidget === "likes" && <PostLikeWidget userId={userId} />}
+          {selectedWidget === "likes" && (
+            <PostLikeWidget userId={userId} isProfile />
+          )}
           {selectedWidget === "empty" &&
             {
               /* Render the necessary components for the empty widget */

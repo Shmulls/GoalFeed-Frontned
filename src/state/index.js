@@ -43,12 +43,13 @@ export const authSlice = createSlice({
       const updatedPosts = state.posts.filter(
         (post) => post._id !== action.payload.postId
       );
-      state.posts = updatedPosts;
+      state.posts = updatedPosts; //use for nav from profile page to home page
     },
     getPostiLikes: (state, action) => {
       const likedPosts = state.posts.filter((post) => {
         return state.user.userId in post.likes;
       });
+      console.log(likedPosts);
       // Use the 'likedPosts' array as needed
     },
   },
