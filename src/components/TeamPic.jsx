@@ -25,7 +25,9 @@ export default function Team_pic({ handleTeamSelection }) {
               onClick={() => handleTeamClick("MHFC")}
               className={selectedTeam === "MHFC" ? "selected" : ""}
             >
-              <img src="../assets/MHFC.png" width={90} alt="MHFC" />
+              <div className="pic">
+              <img src="../assets/MHFC.png" width={90} alt="MHFC"/>
+              </div>
             </button>
             <button
               type="button"
@@ -67,6 +69,7 @@ export default function Team_pic({ handleTeamSelection }) {
                 style={{ objectFit: "contain" }}
               />
             </button>
+            <br />
             <button
               type="button"
               onClick={() => handleTeamClick("HHFC")}
