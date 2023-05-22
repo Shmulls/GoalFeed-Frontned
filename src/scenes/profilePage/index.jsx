@@ -16,6 +16,7 @@ const ProfilePage = () => {
   const [selectedWidget, setSelectedWidget] = useState("posts");
   const { userId } = useParams();
   const token = useSelector((state) => state.token);
+  const { _id } = useSelector((state) => state.user);
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
   const getUser = async () => {
@@ -34,6 +35,8 @@ const ProfilePage = () => {
   const handleWidgetSelection = (widget) => {
     setSelectedWidget(widget);
   };
+  // tcgrrxnsvfmxrmlt;
+  console.log(_id);
 
   if (!user) return null;
 
@@ -56,7 +59,7 @@ const ProfilePage = () => {
           flexBasis={isNonMobileScreens ? "42%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
-          <MyPostWidget picturePath={user.picturePath} />
+          {_id === userId && <MyPostWidget picturePath={user.picturePath} />}{" "}
           <br></br>
           <Box display="flex" justifyContent="center" mb="1rem">
             <Button
