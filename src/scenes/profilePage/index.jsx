@@ -7,6 +7,7 @@ import FriendListWidget from "scenes/widgets/FriendListWidget";
 import MyPostWidget from "scenes/widgets/MyPostWidget";
 import PostsWidget from "scenes/widgets/PostsWidget";
 import PostLikeWidget from "scenes/widgets/PostLikeWidget";
+import PostSaveWidget from "scenes/widgets/PostSaveWidget";
 import UserWidget from "scenes/widgets/UserWidget";
 import BASE_URL from "back_url";
 
@@ -55,6 +56,8 @@ const ProfilePage = () => {
           flexBasis={isNonMobileScreens ? "42%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
+          <MyPostWidget picturePath={user.picturePath} />
+          <br></br>
           <Box display="flex" justifyContent="center" mb="1rem">
             <Button
               variant={selectedWidget === "posts" ? "contained" : "outlined"}
@@ -73,24 +76,22 @@ const ProfilePage = () => {
             </Button>
             <Box mx="1rem" />
             <Button
-              variant={selectedWidget === "empty" ? "contained" : "outlined"}
+              variant={selectedWidget === "saved" ? "contained" : "outlined"}
               color="primary"
-              onClick={() => handleWidgetSelection("empty")}
+              onClick={() => handleWidgetSelection("saved")}
             >
-              Empty
+              Saved
             </Button>
           </Box>
-          <MyPostWidget picturePath={user.picturePath} />
           {selectedWidget === "posts" && (
             <PostsWidget userId={userId} isProfile />
           )}
           {selectedWidget === "likes" && (
             <PostLikeWidget userId={userId} isProfile />
           )}
-          {selectedWidget === "empty" &&
-            {
-              /* Render the necessary components for the empty widget */
-            }}
+          {selectedWidget === "saved" && (
+            <PostSaveWidget userId={userId} isProfile />
+          )}
         </Box>
       </Box>
     </Box>

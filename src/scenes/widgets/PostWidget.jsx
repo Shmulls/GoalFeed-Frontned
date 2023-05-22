@@ -5,6 +5,8 @@ import {
   ShareOutlined,
   EditOutlined,
   DeleteOutlined,
+  TurnedInNotOutlined,
+  TurnedInOutlined,
 } from "@mui/icons-material";
 import BASE_URL from "back_url";
 import {
@@ -21,7 +23,7 @@ import Friend from "components/Friend";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPost, removePost } from "state";
+import { setPost, removePost, addSavedPost } from "state";
 import EditDialog from "components/EditDialog";
 
 const PostWidget = ({
@@ -33,6 +35,7 @@ const PostWidget = ({
   picturePath,
   userPicturePath,
   likes,
+  saved,
   comments,
 }) => {
   const [isComments, setIsComments] = useState(false);
@@ -40,6 +43,7 @@ const PostWidget = ({
   const token = useSelector((state) => state.token);
   const loggedInUserId = useSelector((state) => state.user._id);
   const isLiked = Boolean(likes[loggedInUserId]);
+  const isSaved = saved ? Boolean(saved[loggedInUserId]) : false;
   const likeCount = Object.keys(likes).length;
 
   const { palette } = useTheme();
@@ -68,9 +72,7 @@ const PostWidget = ({
       },
     });
 
-    // If the request was successful, remove the post from your state
     if (response.ok) {
-      // You will need to implement this `removePost` action in your Redux setup
       dispatch(removePost({ postId }));
     } else {
       // Handle error...
@@ -93,6 +95,19 @@ const PostWidget = ({
     } else {
       // Handle error...
     }
+  };
+
+  const savePost = async () => {
+    const response = await fetch(`${BASE_URL}/posts/${postId}/save`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId: loggedInUserId }),
+    });
+    const updatedPost = await response.json();
+    dispatch(setPost({ post: updatedPost }));
   };
 
   const [open, setOpen] = useState(false);
@@ -178,7 +193,17 @@ const PostWidget = ({
                 onSave={handleSave}
                 initialDescription={description}
               />
-              {/* {isEditing && <Button onClick={handleSave}>Save</Button>} */}
+            </FlexBetween>
+          )}
+          {loggedInUserId !== postUserId && (
+            <FlexBetween gap="0.3rem">
+              <IconButton onClick={savePost}>
+                {isSaved ? (
+                  <TurnedInOutlined sx={{ color: primary }} />
+                ) : (
+                  <TurnedInNotOutlined />
+                )}
+              </IconButton>
             </FlexBetween>
           )}
         </FlexBetween>
