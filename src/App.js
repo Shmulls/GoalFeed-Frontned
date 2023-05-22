@@ -6,6 +6,7 @@ import { createTheme } from "@mui/material/styles";
 import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
 import ProfilePage from "scenes/profilePage";
+import EditProfile from "scenes/editProfile";
 import { themeSettings } from "./theme";
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
             <Route
               path="/home"
               element={isAuth ? <HomePage /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/profile/:userId/EditProfile"
+              element={isAuth ? <EditProfile /> : <Navigate to="/" />}
             />
             <Route
               path="/profile/:userId"

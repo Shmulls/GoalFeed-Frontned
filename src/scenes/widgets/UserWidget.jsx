@@ -1,17 +1,17 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { ManageAccountsOutlined, PhoneOutlined } from "@mui/icons-material";
-import { Box, Typography, Divider, useTheme } from "@mui/material";
+import { Button, Box, Typography, Divider, useTheme } from "@mui/material";
 import UserImage from "components/UserImage";
 import FlexBetween from "components/FlexBetween";
 import WidgetWrapper from "components/WidgetWrapper";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import BASE_URL from "back_url";
 
 const UserWidget = ({ userId, picturePath }) => {
   const [user, setUser] = useState(null);
   const { palette } = useTheme();
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // added useNavigate
   const token = useSelector((state) => state.token);
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
@@ -35,7 +35,6 @@ const UserWidget = ({ userId, picturePath }) => {
   }
 
   const { firstName, lastName, team, phoneNumber, friends } = user;
-
   const imagePath = `../assets/${team}.png`;
 
   return (
@@ -65,7 +64,14 @@ const UserWidget = ({ userId, picturePath }) => {
             <Typography color={medium}>{friends.length} friends</Typography>
           </Box>
         </FlexBetween>
-        <ManageAccountsOutlined />
+        <Button
+          onClick={(event) => {
+            event.stopPropagation();
+            navigate(`/profile/${userId}/EditProfile`);
+          }}
+        >
+          <ManageAccountsOutlined />
+        </Button>
       </FlexBetween>
       <Divider />
       <WidgetWrapper>
