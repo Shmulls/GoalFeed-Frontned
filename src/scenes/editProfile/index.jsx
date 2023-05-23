@@ -7,12 +7,17 @@ import {
   Alert,
   useMediaQuery,
   useTheme,
+  Typography,
 } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import BASE_URL from "back_url";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Dropzone from "react-dropzone";
+import Team_pic from "components/TeamPic";
+import FlexBetween from "components/FlexBetween";
 
 const profileSchema = yup.object().shape({
   firstName: yup.string(),
@@ -41,10 +46,13 @@ const EditProfile = () => {
   const { palette } = useTheme();
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const [openField, setOpenField] = useState("");
-  const [isSaved, setIsSaved] = useState(false); // Track whether changes are saved
+  const [isSaved, setIsSaved] = useState(false);
   const { userId } = useParams();
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
+  const [selectedTeam, setSelectedTeam] = useState("");
+  const [picture, setPicture] = useState(null);
+  const [isPictureChanged, setIsPictureChanged] = useState(false);
 
   const handleFieldOpen = (field) => {
     setOpenField(field);
@@ -61,14 +69,24 @@ const EditProfile = () => {
     });
     const changeData = await changeResponse.json();
     if (changeData.success) {
-      setIsSaved(true); // Set isSaved to true when changes are saved successfully
-      setOpenField(""); // Collapse the text field
+      setIsSaved(true);
+      setOpenField("");
     }
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
     await handleFieldSave(values);
     onSubmitProps.resetForm();
+  };
+
+  const handleTeamSelection = (team) => {
+    setSelectedTeam(team);
+    setIsPictureChanged(true);
+  };
+
+  const handleDrop = (acceptedFiles) => {
+    setPicture(acceptedFiles[0]);
+    setIsPictureChanged(true);
   };
 
   return (
@@ -229,6 +247,42 @@ const EditProfile = () => {
                   The changes are saved successfully
                 </Alert>
               )}
+            </Box>
+
+            <Box>
+              <Dropzone
+                acceptedFiles=".jpg,.jpeg,.png"
+                multiple={false}
+                onDrop={handleDrop}
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <Box
+                    {...getRootProps()}
+                    border={`2px dashed ${palette.primary.main}`}
+                    p="1rem"
+                    sx={{ "&:hover": { cursor: "pointer" } }}
+                  >
+                    <input {...getInputProps()} />
+                    {!picture ? (
+                      <p>Add Picture Here</p>
+                    ) : (
+                      <FlexBetween>
+                        <Typography>{picture.name}</Typography>
+                        <EditOutlinedIcon />
+                      </FlexBetween>
+                    )}
+                  </Box>
+                )}
+              </Dropzone>
+              {isPictureChanged && <Button type="submit">Save Picture</Button>}
+            </Box>
+
+            <Box>
+              <Team_pic
+                selectedTeam={selectedTeam}
+                handleTeamSelection={handleTeamSelection}
+              />
+              {selectedTeam !== "" && <Button type="submit">Save Team</Button>}
             </Box>
 
             <Button
