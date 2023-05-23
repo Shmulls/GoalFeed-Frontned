@@ -14,6 +14,7 @@ import Dropzone from "react-dropzone";
 import Team_pic from "components/TeamPic";
 import BASE_URL from "back_url";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const profileSchema = yup.object().shape({
   firstName: yup.string(),
@@ -29,8 +30,6 @@ const profileSchema = yup.object().shape({
   picture: yup.string(),
 });
 
-const { userId } = useParams();
-
 const initialValuesProfile = {
   firstName: "",
   lastName: "",
@@ -45,19 +44,20 @@ const EditProfile = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const [selectedTeam, setSelectedTeam] = useState("");
   const [openField, setOpenField] = useState("");
+  const { userId } = useParams();
+  const token = useSelector((state) => state.token);
 
   const handleTeamSelection = (team) => {
     setSelectedTeam(team);
   };
 
-  const editProfile = async (values, onSubmitProps) => {
-    // your code...
-  };
-
   const change = async (values, onSubmitProps) => {
-    const changeResopnse = await fetch(`${BASE_URL}/user/${userId}/change`, {
+    const changeResopnse = await fetch(`${BASE_URL}/users/${userId}/change`, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(values),
     });
     const changeData = await changeResopnse.json();
@@ -65,6 +65,10 @@ const EditProfile = () => {
       onSubmitProps.resetForm();
       setOpenField("");
     }
+  };
+
+  const handleFormSubmit = async (values, onSubmitProps) => {
+    await change(values, onSubmitProps);
   };
 
   return (
@@ -77,7 +81,7 @@ const EditProfile = () => {
       gap={2}
     >
       <Formik
-        onSubmit={editProfile}
+        onSubmit={handleFormSubmit}
         initialValues={initialValuesProfile}
         validationSchema={profileSchema}
       >
@@ -111,7 +115,7 @@ const EditProfile = () => {
                   }
                   helperText={touched.firstName && errors.firstName}
                 />
-                <Button type="button" onClick={change}>
+                <Button type="button" onClick={() => change(values)}>
                   Save
                 </Button>
               </Collapse>
@@ -134,7 +138,9 @@ const EditProfile = () => {
                   error={Boolean(touched.lastName) && Boolean(errors.lastName)}
                   helperText={touched.lastName && errors.lastName}
                 />
-                <Button type="submit">Save</Button>
+                <Button type="button" onClick={() => change(values)}>
+                  Save
+                </Button>
               </Collapse>
             </Box>
 
@@ -152,7 +158,9 @@ const EditProfile = () => {
                   error={Boolean(touched.email) && Boolean(errors.email)}
                   helperText={touched.email && errors.email}
                 />
-                <Button type="submit">Save</Button>
+                <Button type="button" onClick={() => change(values)}>
+                  Save
+                </Button>
               </Collapse>
             </Box>
 
@@ -174,7 +182,9 @@ const EditProfile = () => {
                   error={Boolean(touched.password) && Boolean(errors.password)}
                   helperText={touched.password && errors.password}
                 />
-                <Button type="submit">Save</Button>
+                <Button type="button" onClick={() => change(values)}>
+                  Save
+                </Button>
               </Collapse>
             </Box>
 

@@ -26,12 +26,12 @@ function App() {
               element={isAuth ? <HomePage /> : <Navigate to="/" />}
             />
             <Route
-              path="/profile/:userId/EditProfile"
-              element={isAuth ? <EditProfile /> : <Navigate to="/" />}
-            />
-            <Route
               path="/profile/:userId"
               element={isAuth ? <ProfilePage /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/profile/:userId/EditProfile"
+              element={isAuth ? <EditProfile /> : <Navigate to="/" />}
             />
           </Routes>
         </ThemeProvider>
