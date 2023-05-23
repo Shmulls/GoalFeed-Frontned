@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ManageAccountsOutlined, PhoneOutlined } from "@mui/icons-material";
 import { Button, Box, Typography, Divider, useTheme } from "@mui/material";
@@ -16,6 +16,7 @@ const UserWidget = ({ userId, picturePath }) => {
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
+  const { _id } = useSelector((state) => state.user);
 
   const getUser = async () => {
     const response = await fetch(`${BASE_URL}/users/${userId}`, {
@@ -64,14 +65,16 @@ const UserWidget = ({ userId, picturePath }) => {
             <Typography color={medium}>{friends.length} friends</Typography>
           </Box>
         </FlexBetween>
-        <Button
-          onClick={(event) => {
-            event.stopPropagation();
-            navigate(`/profile/${userId}/EditProfile`);
-          }}
-        >
-          <ManageAccountsOutlined />
-        </Button>
+        {_id === userId && (
+          <Button
+            onClick={(event) => {
+              event.stopPropagation();
+              navigate(`/profile/${userId}/EditProfile`);
+            }}
+          >
+            <ManageAccountsOutlined />
+          </Button>
+        )}
       </FlexBetween>
       <Divider />
       <WidgetWrapper>

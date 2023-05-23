@@ -10,11 +10,9 @@ import {
 } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
-import Dropzone from "react-dropzone";
-import Team_pic from "components/TeamPic";
 import BASE_URL from "back_url";
 import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const profileSchema = yup.object().shape({
   firstName: yup.string(),
@@ -42,19 +40,18 @@ const initialValuesProfile = {
 const EditProfile = () => {
   const { palette } = useTheme();
   const isNonMobile = useMediaQuery("(min-width:600px)");
-  const [selectedTeam, setSelectedTeam] = useState("");
   const [openField, setOpenField] = useState("");
   const [isSaved, setIsSaved] = useState(false); // Track whether changes are saved
   const { userId } = useParams();
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
 
-  const handleTeamSelection = (team) => {
-    setSelectedTeam(team);
+  const handleFieldOpen = (field) => {
+    setOpenField(field);
   };
 
-  const change = async (values, onSubmitProps) => {
-    const changeResopnse = await fetch(`${BASE_URL}/users/${userId}/change`, {
+  const handleFieldSave = async (values) => {
+    const changeResponse = await fetch(`${BASE_URL}/users/${userId}/change`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -62,16 +59,16 @@ const EditProfile = () => {
       },
       body: JSON.stringify(values),
     });
-    const changeData = await changeResopnse.json();
+    const changeData = await changeResponse.json();
     if (changeData.success) {
-      onSubmitProps.resetForm();
-      setOpenField("");
       setIsSaved(true); // Set isSaved to true when changes are saved successfully
+      setOpenField(""); // Collapse the text field
     }
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
-    await change(values, onSubmitProps);
+    await handleFieldSave(values);
+    onSubmitProps.resetForm();
   };
 
   return (
@@ -102,7 +99,7 @@ const EditProfile = () => {
             <Box>
               <Button
                 variant="outlined"
-                onClick={() => setOpenField("firstName")}
+                onClick={() => handleFieldOpen("firstName")}
               >
                 Change First Name
               </Button>
@@ -118,9 +115,7 @@ const EditProfile = () => {
                   }
                   helperText={touched.firstName && errors.firstName}
                 />
-                <Button type="button" onClick={() => change(values)}>
-                  Save
-                </Button>
+                <Button type="submit">Save</Button>
               </Collapse>
               {isSaved && (
                 <Alert severity="success">
@@ -132,7 +127,7 @@ const EditProfile = () => {
             <Box>
               <Button
                 variant="outlined"
-                onClick={() => setOpenField("lastName")}
+                onClick={() => handleFieldOpen("lastName")}
               >
                 Change Last Name
               </Button>
@@ -146,14 +141,20 @@ const EditProfile = () => {
                   error={Boolean(touched.lastName) && Boolean(errors.lastName)}
                   helperText={touched.lastName && errors.lastName}
                 />
-                <Button type="button" onClick={() => change(values)}>
-                  Save
-                </Button>
+                <Button type="submit">Save</Button>
               </Collapse>
+              {isSaved && (
+                <Alert severity="success">
+                  The changes are saved successfully
+                </Alert>
+              )}
             </Box>
 
             <Box>
-              <Button variant="outlined" onClick={() => setOpenField("email")}>
+              <Button
+                variant="outlined"
+                onClick={() => handleFieldOpen("email")}
+              >
                 Change Email
               </Button>
               <Collapse in={openField === "email"}>
@@ -166,16 +167,19 @@ const EditProfile = () => {
                   error={Boolean(touched.email) && Boolean(errors.email)}
                   helperText={touched.email && errors.email}
                 />
-                <Button type="button" onClick={() => change(values)}>
-                  Save
-                </Button>
+                <Button type="submit">Save</Button>
               </Collapse>
+              {isSaved && (
+                <Alert severity="success">
+                  The changes are saved successfully
+                </Alert>
+              )}
             </Box>
 
             <Box>
               <Button
                 variant="outlined"
-                onClick={() => setOpenField("password")}
+                onClick={() => handleFieldOpen("password")}
               >
                 Change Password
               </Button>
@@ -190,16 +194,19 @@ const EditProfile = () => {
                   error={Boolean(touched.password) && Boolean(errors.password)}
                   helperText={touched.password && errors.password}
                 />
-                <Button type="button" onClick={() => change(values)}>
-                  Save
-                </Button>
+                <Button type="submit">Save</Button>
               </Collapse>
+              {isSaved && (
+                <Alert severity="success">
+                  The changes are saved successfully
+                </Alert>
+              )}
             </Box>
 
             <Box>
               <Button
                 variant="outlined"
-                onClick={() => setOpenField("phoneNumber")}
+                onClick={() => handleFieldOpen("phoneNumber")}
               >
                 Change Phone Number
               </Button>
@@ -215,13 +222,14 @@ const EditProfile = () => {
                   }
                   helperText={touched.phoneNumber && errors.phoneNumber}
                 />
-                <Button type="button" onClick={() => change(values)}>
-                  Save
-                </Button>
+                <Button type="submit">Save</Button>
               </Collapse>
+              {isSaved && (
+                <Alert severity="success">
+                  The changes are saved successfully
+                </Alert>
+              )}
             </Box>
-
-            {/* Repeat the pattern for other fields */}
 
             <Button
               variant="outlined"
