@@ -53,9 +53,21 @@ const EditProfile = () => {
   const [selectedTeam, setSelectedTeam] = useState("");
   const [picture, setPicture] = useState(null);
   const [isPictureChanged, setIsPictureChanged] = useState(false);
+  const [isPictureOpen, setIsPictureOpen] = useState(false);
+  const [isTeamOpen, setIsTeamOpen] = useState(false);
 
   const handleFieldOpen = (field) => {
-    setOpenField(field);
+    if (field === "picture") {
+      setIsPictureOpen((prev) => !prev);
+      setIsTeamOpen(false);
+    } else if (field === "team") {
+      setIsTeamOpen((prev) => !prev);
+      setIsPictureOpen(false);
+    } else {
+      setOpenField((prev) => (prev === field ? "" : field));
+      setIsPictureOpen(false);
+      setIsTeamOpen(false);
+    }
   };
 
   const handleFieldSave = async (values) => {
@@ -250,39 +262,59 @@ const EditProfile = () => {
             </Box>
 
             <Box>
-              <Dropzone
-                acceptedFiles=".jpg,.jpeg,.png"
-                multiple={false}
-                onDrop={handleDrop}
+              <Button
+                variant="outlined"
+                onClick={() => handleFieldOpen("picture")}
               >
-                {({ getRootProps, getInputProps }) => (
-                  <Box
-                    {...getRootProps()}
-                    border={`2px dashed ${palette.primary.main}`}
-                    p="1rem"
-                    sx={{ "&:hover": { cursor: "pointer" } }}
-                  >
-                    <input {...getInputProps()} />
-                    {!picture ? (
-                      <p>Add Picture Here</p>
-                    ) : (
-                      <FlexBetween>
-                        <Typography>{picture.name}</Typography>
-                        <EditOutlinedIcon />
-                      </FlexBetween>
-                    )}
-                  </Box>
+                {isPictureOpen ? "Close Picture" : "Change Picture"}
+              </Button>
+              <Collapse in={isPictureOpen}>
+                <Dropzone
+                  acceptedFiles=".jpg,.jpeg,.png"
+                  multiple={false}
+                  onDrop={handleDrop}
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <Box
+                      {...getRootProps()}
+                      border={`2px dashed ${palette.primary.main}`}
+                      p="1rem"
+                      sx={{ "&:hover": { cursor: "pointer" } }}
+                    >
+                      <input {...getInputProps()} />
+                      {!picture ? (
+                        <p>Add Picture Here</p>
+                      ) : (
+                        <FlexBetween>
+                          <Typography>{picture.name}</Typography>
+                          <EditOutlinedIcon />
+                        </FlexBetween>
+                      )}
+                    </Box>
+                  )}
+                </Dropzone>
+                {isPictureChanged && (
+                  <Button type="submit">Save Picture</Button>
                 )}
-              </Dropzone>
-              {isPictureChanged && <Button type="submit">Save Picture</Button>}
+              </Collapse>
             </Box>
 
             <Box>
-              <Team_pic
-                selectedTeam={selectedTeam}
-                handleTeamSelection={handleTeamSelection}
-              />
-              {selectedTeam !== "" && <Button type="submit">Save Team</Button>}
+              <Button
+                variant="outlined"
+                onClick={() => handleFieldOpen("team")}
+              >
+                {isTeamOpen ? "Close Team" : "Change Team"}
+              </Button>
+              <Collapse in={isTeamOpen}>
+                <Team_pic
+                  selectedTeam={selectedTeam}
+                  handleTeamSelection={handleTeamSelection}
+                />
+                {selectedTeam !== "" && (
+                  <Button type="submit">Save Team</Button>
+                )}
+              </Collapse>
             </Box>
 
             <Button
