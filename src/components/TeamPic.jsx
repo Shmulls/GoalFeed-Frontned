@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./TeamPic.css";
 
-export default function Team_pic({ handleTeamSelection }) {
+const Team_pic = ({ handleTeamSelection }) => {
   const [selectedTeam, setSelectedTeam] = useState("");
 
   const handleTeamClick = (team) => {
@@ -115,4 +115,6 @@ export default function Team_pic({ handleTeamSelection }) {
       </div>
     </div>
   );
-}
+};
+
+export default Team_pic;
