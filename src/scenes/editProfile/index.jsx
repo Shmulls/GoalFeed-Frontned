@@ -13,7 +13,7 @@ import * as yup from "yup";
 import Dropzone from "react-dropzone";
 import Team_pic from "components/TeamPic";
 import BASE_URL from "back_url";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 const profileSchema = yup.object().shape({
@@ -44,7 +44,9 @@ const EditProfile = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const [selectedTeam, setSelectedTeam] = useState("");
   const [openField, setOpenField] = useState("");
+  const [isSaved, setIsSaved] = useState(false); // Track whether changes are saved
   const { userId } = useParams();
+  const navigate = useNavigate();
   const token = useSelector((state) => state.token);
 
   const handleTeamSelection = (team) => {
@@ -64,6 +66,7 @@ const EditProfile = () => {
     if (changeData.success) {
       onSubmitProps.resetForm();
       setOpenField("");
+      setIsSaved(true); // Set isSaved to true when changes are saved successfully
     }
   };
 
@@ -119,6 +122,11 @@ const EditProfile = () => {
                   Save
                 </Button>
               </Collapse>
+              {isSaved && (
+                <Alert severity="success">
+                  The changes are saved successfully
+                </Alert>
+              )}
             </Box>
 
             <Box>
@@ -188,7 +196,39 @@ const EditProfile = () => {
               </Collapse>
             </Box>
 
-            {/* ... repeat for other fields */}
+            <Box>
+              <Button
+                variant="outlined"
+                onClick={() => setOpenField("phoneNumber")}
+              >
+                Change Phone Number
+              </Button>
+              <Collapse in={openField === "phoneNumber"}>
+                <TextField
+                  label="Phone Number"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.phoneNumber}
+                  name="phoneNumber"
+                  error={
+                    Boolean(touched.phoneNumber) && Boolean(errors.phoneNumber)
+                  }
+                  helperText={touched.phoneNumber && errors.phoneNumber}
+                />
+                <Button type="button" onClick={() => change(values)}>
+                  Save
+                </Button>
+              </Collapse>
+            </Box>
+
+            {/* Repeat the pattern for other fields */}
+
+            <Button
+              variant="outlined"
+              onClick={() => navigate(`/profile/${userId}`)}
+            >
+              Back
+            </Button>
           </form>
         )}
       </Formik>
