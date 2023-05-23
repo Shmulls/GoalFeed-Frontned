@@ -16,6 +16,7 @@
   "plugins": ["react", "prettier", "react-hooks"],
   "rules": {
     "indent": "off",
+    "linebreak-style": ["error", "unix"],
     "import/no-unresolved": "off",
     "react/react-in-jsx-scope": "off",
     "no-underscore-dangle": "off",
@@ -45,7 +46,6 @@
     "arrow-body-style": "off",
     "react/self-closing-comp": "off",
     "react/jsx-pascal-case": "off",
-    "linebreak-style": ["error", "unix"],
     "no-restricted-syntax": [
       "error",
       "ForInStatement",
