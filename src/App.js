@@ -7,6 +7,7 @@ import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
 import ProfilePage from "scenes/profilePage";
 import EditProfile from "scenes/editProfile";
+import GameManager from "scenes/gamePage";
 import { themeSettings } from "./theme";
 
 function App() {
@@ -32,6 +33,10 @@ function App() {
             <Route
               path="/profile/:userId/EditProfile"
               element={isAuth ? <EditProfile /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/:userId/Game"
+              element={isAuth ? <GameManager /> : <Navigate to="/" />}
             />
           </Routes>
         </ThemeProvider>

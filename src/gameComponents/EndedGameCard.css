@@ -1,0 +1,53 @@
+.ended-game-card {
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    font-family: 'Roboto', sans-serif;
+    padding: 1rem;
+  }
+  
+  .ended-game-id {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .ended-game-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .ended-teams {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .ended-team {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .ended-vs {
+    margin: 0 0.5rem;
+    font-size: 16px;
+  }
+  
+  .ended-scores {
+    display: flex;
+    justify-content: space-between;
+    width: 450px;
+  }
+  
+  .ended-home-score,
+  .ended-away-score {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
+    flex-direction: row;
+    /* text-align: center; */
+  }
+  
