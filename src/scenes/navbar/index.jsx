@@ -25,6 +25,7 @@ import { setMode, setLogout } from "state";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
 import BASE_URL from "back_url";
+import SearchComponent from "components/SearchComponent";
 
 const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
@@ -32,9 +33,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
-  //SEARCH FUNCTIONALITY
-  const [searchQuery, setSearchQuery] = useState("");
-  const token = useSelector((state) => state.token);
   const theme = useTheme();
   const neutralLight = theme.palette.neutral.light;
   const dark = theme.palette.neutral.dark;
@@ -43,29 +41,6 @@ const Navbar = () => {
   const alt = theme.palette.background.alt;
 
   const fullName = `${user.firstName} ${user.lastName}`;
-
-  const handleSearch = async (query) => {
-    try {
-      const response = await fetch(`${BASE_URL}/search/?query=${query}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Search results:", data[0]._id);
-        navigate(`/profile/${data[0]._id}`);
-      } else {
-        console.error(
-          "Error occurred while searching for users:",
-          response.statusText
-        );
-      }
-    } catch (error) {
-      console.error("Error occurred while searching for users:", error);
-    }
-  };
 
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
@@ -91,14 +66,7 @@ const Navbar = () => {
             gap="3rem"
             padding="0.1rem 1.5rem"
           >
-            <InputBase
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <IconButton onClick={() => handleSearch(searchQuery)}>
-              <Search />
-            </IconButton>
+            <SearchComponent />
           </FlexBetween>
         )}
       </FlexBetween>
