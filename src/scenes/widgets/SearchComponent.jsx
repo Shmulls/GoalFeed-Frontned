@@ -1,16 +1,25 @@
-// SearchComponent.js
 import { useState } from "react";
-import { InputBase, IconButton, Menu, MenuItem } from "@mui/material";
+import {
+  Box,
+  InputBase,
+  IconButton,
+  Menu,
+  MenuItem,
+  Modal,
+  Typography,
+} from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import BASE_URL from "back_url";
 import { useSelector } from "react-redux";
+import PostWidget from "./PostWidget";
 
 const SearchComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [SearchResultsUsers, setSearchResultsUsers] = useState([]);
+  const [searchResultsUsers, setSearchResultsUsers] = useState([]);
   const [searchResultsPosts, setSearchResultsPosts] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [showResultsModal, setShowResultsModal] = useState(false);
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
 
@@ -53,6 +62,7 @@ const SearchComponent = () => {
         const data = await response.json();
         setSearchResultsPosts(data);
         console.log("Search results for posts:", data);
+        setShowResultsModal(true); // Show the modal with search results
       } else {
         console.error(
           "Error occurred while searching for posts:",
@@ -79,8 +89,11 @@ const SearchComponent = () => {
   };
 
   const handleMenuItemClickPosts = (result) => {
-    navigate(`/content/${result._id}`);
     setAnchorEl(null);
+  };
+
+  const handleCloseResultsModal = () => {
+    setShowResultsModal(false);
   };
 
   return (
@@ -108,7 +121,7 @@ const SearchComponent = () => {
           horizontal: "left",
         }}
       >
-        {SearchResultsUsers.map((result) => (
+        {searchResultsUsers.map((result) => (
           <MenuItem
             key={result._id}
             onClick={() => handleMenuItemClick(result)}
@@ -116,21 +129,55 @@ const SearchComponent = () => {
             {result.firstName} {result.lastName}
           </MenuItem>
         ))}
-        {searchResultsPosts.map((result) => (
-          <MenuItem
-            key={result._id}
-            onClick={() => handleMenuItemClickPosts(result)}
-          >
-            {result.description}
-          </MenuItem>
-        ))}
         <MenuItem
-          onClick={() => navigate(`/search-posts?query=${searchQuery}`)}
+          onClick={() => handleSearchPosts(searchQuery)}
           sx={{ backgroundColor: "lightcyan" }}
         >
           <strong>Search for '{searchQuery}' in the posts</strong>
         </MenuItem>
       </Menu>
+
+      {/* Modal for displaying search results */}
+      <Modal
+        open={showResultsModal}
+        onClose={handleCloseResultsModal}
+        aria-labelledby="search-results-modal-title"
+        aria-describedby="search-results-modal-description"
+      >
+        <div>
+          <Typography
+            id="search-results-modal-title"
+            variant="h6"
+            align="center"
+            sx={{ mt: 4 }}
+          >
+            Search Results for Posts
+          </Typography>
+          <Typography
+            id="search-results-modal-description"
+            align="center"
+            sx={{ mt: 2 }}
+          >
+            <Box>
+              {searchResultsPosts.map((result) => (
+                <PostWidget
+                  key={result._id}
+                  postId={result._id}
+                  postUserId={result.userId}
+                  name={result.name}
+                  description={result.description}
+                  location={result.location}
+                  picturePath={result.picturePath}
+                  userPicturePath={result.userPicturePath}
+                  likes={result.likes}
+                  saved={result.saved}
+                  comments={result.comments}
+                />
+              ))}
+            </Box>
+          </Typography>
+        </div>
+      </Modal>
     </div>
   );
 };
