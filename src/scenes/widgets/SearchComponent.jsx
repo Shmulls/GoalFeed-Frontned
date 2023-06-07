@@ -12,7 +12,8 @@ import { Search } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import BASE_URL from "back_url";
 import { useSelector } from "react-redux";
-import PostWidget from "./PostWidget";
+// import PostWidget from "./PostWidget";
+import SearchWidget from "./SearchWidget";
 
 const SearchComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -129,10 +130,7 @@ const SearchComponent = () => {
             {result.firstName} {result.lastName}
           </MenuItem>
         ))}
-        <MenuItem
-          onClick={() => handleSearchPosts(searchQuery)}
-          sx={{ backgroundColor: "lightcyan" }}
-        >
+        <MenuItem onClick={() => handleSearchPosts(searchQuery)}>
           <strong>Search for '{searchQuery}' in the posts</strong>
         </MenuItem>
       </Menu>
@@ -144,39 +142,10 @@ const SearchComponent = () => {
         aria-labelledby="search-results-modal-title"
         aria-describedby="search-results-modal-description"
       >
-        <div>
-          <Typography
-            id="search-results-modal-title"
-            variant="h6"
-            align="center"
-            sx={{ mt: 4 }}
-          >
-            Search Results for Posts
-          </Typography>
-          <Typography
-            id="search-results-modal-description"
-            align="center"
-            sx={{ mt: 2 }}
-          >
-            <Box>
-              {searchResultsPosts.map((result) => (
-                <PostWidget
-                  key={result._id}
-                  postId={result._id}
-                  postUserId={result.userId}
-                  name={result.name}
-                  description={result.description}
-                  location={result.location}
-                  picturePath={result.picturePath}
-                  userPicturePath={result.userPicturePath}
-                  likes={result.likes}
-                  saved={result.saved}
-                  comments={result.comments}
-                />
-              ))}
-            </Box>
-          </Typography>
-        </div>
+        <SearchWidget
+          searchResultsPosts={searchResultsPosts}
+          handleCloseResultsModal={handleCloseResultsModal}
+        />
       </Modal>
     </div>
   );
