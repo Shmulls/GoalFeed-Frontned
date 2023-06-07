@@ -55,6 +55,13 @@ const EditProfile = () => {
   const [isPictureChanged, setIsPictureChanged] = useState(false);
   const [isPictureOpen, setIsPictureOpen] = useState(false);
   const [isTeamOpen, setIsTeamOpen] = useState(false);
+  const [firstNameSaved, setFirstNameSaved] = useState(false);
+  const [lastNameSaved, setLastNameSaved] = useState(false);
+  const [emailSaved, setEmailSaved] = useState(false);
+  const [passwordSaved, setPasswordSaved] = useState(false);
+  const [phoneNumberSaved, setPhoneNumberSaved] = useState(false);
+  const [pictureSaved, setPictureSaved] = useState(false);
+  const [teamSaved, setTeamSaved] = useState(false);
 
   const handleFieldOpen = (field) => {
     if (field === "picture") {
@@ -70,7 +77,7 @@ const EditProfile = () => {
     }
   };
 
-  const handleFieldSave = async (values) => {
+  const handleFieldSave = async (values, field) => {
     const changeResponse = await fetch(`${BASE_URL}/users/${userId}/change`, {
       method: "PATCH",
       headers: {
@@ -83,6 +90,26 @@ const EditProfile = () => {
     if (changeData.success) {
       setIsSaved(true);
       setOpenField("");
+      setTimeout(() => {
+        setIsSaved(false); // Reset the success message after a delay
+      }, 3000);
+
+      // Display success message for the specific field
+      if (field === "firstName") {
+        setFirstNameSaved(true);
+      } else if (field === "lastName") {
+        setLastNameSaved(true);
+      } else if (field === "email") {
+        setEmailSaved(true);
+      } else if (field === "password") {
+        setPasswordSaved(true);
+      } else if (field === "phoneNumber") {
+        setPhoneNumberSaved(true);
+      } else if (field === "picture") {
+        setPictureSaved(true);
+      } else if (field === "team") {
+        setTeamSaved(true);
+      }
     }
   };
 
@@ -145,11 +172,16 @@ const EditProfile = () => {
                   }
                   helperText={touched.firstName && errors.firstName}
                 />
-                <Button type="submit">Save</Button>
+                <Button
+                  type="submit"
+                  onClick={() => handleFieldSave(values, "firstName")}
+                >
+                  Save
+                </Button>
               </Collapse>
-              {isSaved && (
+              {firstNameSaved && (
                 <Alert severity="success">
-                  The changes are saved successfully
+                  First Name is saved successfully.
                 </Alert>
               )}
             </Box>
@@ -171,11 +203,16 @@ const EditProfile = () => {
                   error={Boolean(touched.lastName) && Boolean(errors.lastName)}
                   helperText={touched.lastName && errors.lastName}
                 />
-                <Button type="submit">Save</Button>
+                <Button
+                  type="submit"
+                  onClick={() => handleFieldSave(values, "lastName")}
+                >
+                  Save
+                </Button>
               </Collapse>
-              {isSaved && (
+              {lastNameSaved && (
                 <Alert severity="success">
-                  The changes are saved successfully
+                  Last Name is saved successfully.
                 </Alert>
               )}
             </Box>
@@ -197,12 +234,15 @@ const EditProfile = () => {
                   error={Boolean(touched.email) && Boolean(errors.email)}
                   helperText={touched.email && errors.email}
                 />
-                <Button type="submit">Save</Button>
+                <Button
+                  type="submit"
+                  onClick={() => handleFieldSave(values, "email")}
+                >
+                  Save
+                </Button>
               </Collapse>
-              {isSaved && (
-                <Alert severity="success">
-                  The changes are saved successfully
-                </Alert>
+              {emailSaved && (
+                <Alert severity="success">Email is saved successfully.</Alert>
               )}
             </Box>
 
@@ -224,11 +264,16 @@ const EditProfile = () => {
                   error={Boolean(touched.password) && Boolean(errors.password)}
                   helperText={touched.password && errors.password}
                 />
-                <Button type="submit">Save</Button>
+                <Button
+                  type="submit"
+                  onClick={() => handleFieldSave(values, "password")}
+                >
+                  Save
+                </Button>
               </Collapse>
-              {isSaved && (
+              {passwordSaved && (
                 <Alert severity="success">
-                  The changes are saved successfully
+                  Password is saved successfully.
                 </Alert>
               )}
             </Box>
@@ -252,11 +297,16 @@ const EditProfile = () => {
                   }
                   helperText={touched.phoneNumber && errors.phoneNumber}
                 />
-                <Button type="submit">Save</Button>
+                <Button
+                  type="submit"
+                  onClick={() => handleFieldSave(values, "phoneNumber")}
+                >
+                  Save
+                </Button>
               </Collapse>
-              {isSaved && (
+              {phoneNumberSaved && (
                 <Alert severity="success">
-                  The changes are saved successfully
+                  Phone Number is saved successfully.
                 </Alert>
               )}
             </Box>
@@ -294,9 +344,17 @@ const EditProfile = () => {
                   )}
                 </Dropzone>
                 {isPictureChanged && (
-                  <Button type="submit">Save Picture</Button>
+                  <Button
+                    type="submit"
+                    onClick={() => handleFieldSave(values, "picture")}
+                  >
+                    Save Picture
+                  </Button>
                 )}
               </Collapse>
+              {pictureSaved && (
+                <Alert severity="success">Picture is saved successfully.</Alert>
+              )}
             </Box>
 
             <Box>
@@ -312,9 +370,17 @@ const EditProfile = () => {
                   handleTeamSelection={handleTeamSelection}
                 />
                 {selectedTeam !== "" && (
-                  <Button type="submit">Save Team</Button>
+                  <Button
+                    type="submit"
+                    onClick={() => handleFieldSave(values, "team")}
+                  >
+                    Save Team
+                  </Button>
                 )}
               </Collapse>
+              {teamSaved && (
+                <Alert severity="success">Team is saved successfully.</Alert>
+              )}
             </Box>
 
             <Button
