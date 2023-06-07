@@ -8,12 +8,13 @@ import { useSelector } from "react-redux";
 
 const SearchComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [SearchResultsUsers, setSearchResultsUsers] = useState([]);
+  const [searchResultsPosts, setSearchResultsPosts] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
 
-  const handleSearch = async (query) => {
+  const handleSearchUsers = async (query) => {
     try {
       const response = await fetch(`${BASE_URL}/search/?query=${query}`, {
         headers: {
@@ -23,7 +24,7 @@ const SearchComponent = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setSearchResults(data);
+        setSearchResultsUsers(data);
         console.log(data);
         setAnchorEl(document.getElementById("search-input"));
       } else {
@@ -37,12 +38,48 @@ const SearchComponent = () => {
     }
   };
 
-  const handleMenuItemClick = (userId) => {
-    navigate(`/profile/${userId}`);
+  const handleSearchPosts = async (query) => {
+    try {
+      const response = await fetch(
+        `${BASE_URL}/search/content/?query=${query}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setSearchResultsPosts(data);
+        console.log("Search results for posts:", data);
+      } else {
+        console.error(
+          "Error occurred while searching for posts:",
+          response.statusText
+        );
+      }
+    } catch (error) {
+      console.error("Error occurred while searching for posts:", error);
+    }
+  };
+
+  const handleMenuItemClick = (result) => {
+    navigate(`/profile/${result._id}`);
     setAnchorEl(null);
   };
 
   const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleSearch = (query) => {
+    handleSearchUsers(query);
+    handleSearchPosts(query);
+  };
+
+  const handleMenuItemClickPosts = (result) => {
+    navigate(`/content/${result._id}`);
     setAnchorEl(null);
   };
 
@@ -71,14 +108,28 @@ const SearchComponent = () => {
           horizontal: "left",
         }}
       >
-        {searchResults.map((result) => (
+        {SearchResultsUsers.map((result) => (
           <MenuItem
             key={result._id}
-            onClick={() => handleMenuItemClick(result._id)}
+            onClick={() => handleMenuItemClick(result)}
           >
             {result.firstName} {result.lastName}
           </MenuItem>
         ))}
+        {searchResultsPosts.map((result) => (
+          <MenuItem
+            key={result._id}
+            onClick={() => handleMenuItemClickPosts(result)}
+          >
+            {result.description}
+          </MenuItem>
+        ))}
+        <MenuItem
+          onClick={() => navigate(`/search-posts?query=${searchQuery}`)}
+          sx={{ backgroundColor: "lightcyan" }}
+        >
+          <strong>Search for '{searchQuery}' in the posts</strong>
+        </MenuItem>
       </Menu>
     </div>
   );
