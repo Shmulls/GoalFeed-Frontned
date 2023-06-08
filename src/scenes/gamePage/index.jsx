@@ -1,23 +1,25 @@
-// import { useState, UseContext } from "react";
-// import { useParams } from "react-router-dom";
-// import { Box } from "@mui/material";
-// import { UserContext } from "gameComponents/UserContext";
-// import WidgetWrapper from "components/WidgetWrapper";
-// import GuessHistory from "gameComponents/GuessHistory";
-// import NewGuess from "gameComponents/NewGuess";
-// import EndedGames from "gameComponents/EndedGames";
+import { useState, UseContext } from "react";
+import { useParams } from "react-router-dom";
+import { Box } from "@mui/material";
+//import { UserContext } from "gameComponents/UserContext";
+import ValidGuessHistory from "./GuessHistory";
+import NewGuess from "./NewGuess";
+import WidgetWrapper from "components/WidgetWrapper";
+import { UserProvider } from "./UserContext";
 
-// const gameManager = () => {
+const gameManager = () => {
 //   const { loggedInUsername, loggedInToken } = useContext(UserContext);
 
-//   return (
-//     <WidgetWrapper>
-//       <h2>Welcome!</h2>
-//       <GuessHistory />
-//       <NewGuess />
-//       <EndedGames />
-//     </WidgetWrapper>
-//   );
-// };
+  return (
+    <WidgetWrapper>
+      <UserProvider>
+        <h2>Welcome!</h2>
+        <ValidGuessHistory />
+        <NewGuess />
+        {/* <EndedGames /> */}
+      </UserProvider>
+    </WidgetWrapper>
+  );
+};
 
-// export default gameManager;
+export default gameManager;

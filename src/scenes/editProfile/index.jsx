@@ -133,7 +133,7 @@ const EditProfile = () => {
       display="flex"
       flexDirection="column"
       justifyContent="center"
-      margin={"top"}
+      margin="top"
       alignItems="center"
       minHeight="100vh"
       gap={2}
@@ -155,39 +155,37 @@ const EditProfile = () => {
         }) => (
           <form onSubmit={handleSubmit}>
             <Box
-            alignItems="center"
-            sx={{
-              display: "flex",
-              justifyContent: "space-between", // Adjust the value as needed to control the spacing
-            }}
-             >
+              alignItems="center"
+              sx={{
+                display: "flex",
+                justifyContent: "space-between", // Adjust the value as needed to control the spacing
+              }}
+            >
               <Button
                 variant="text"
                 onClick={() => handleFieldOpen("firstName")}
               >
                 Change First Name
               </Button>
-              
-                <TextField
-                  label="First Name"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.firstName}
-                  name="firstName"
-                  error={
+              <TextField
+                label="First Name"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.firstName}
+                name="firstName"
+                error={
                     Boolean(touched.firstName) && Boolean(errors.firstName)
                   }
-                  helperText={touched.firstName && errors.firstName}
-                  sx={{
-                    width: "500px", // Replace '500px' with the desired width value
+                helperText={touched.firstName && errors.firstName}
+                sx={{
+                  width: "500px", // Replace '500px' with the desired width value
                     marginLeft: "25px",
                   }}
-                  
-                />
-                <Button
-                  type="submit"
-                  onClick={() => handleFieldSave(values, "firstName")}
-                >
+              />
+              <Button
+                type="submit"
+                onClick={() => handleFieldSave(values, "firstName")}
+              >
                   Save
                 </Button>
               
@@ -426,15 +424,14 @@ const EditProfile = () => {
                   selectedTeam={selectedTeam}
                   handleTeamSelection={handleTeamSelection}
                 />
-                {selectedTeam !== "" && (
-                  <Button
+              {selectedTeam !== "" && (
+                <Button
                     type="submit"
                     onClick={() => handleFieldSave(values, "team")}
-                  >
+                >
                     Save Team
-                  </Button>
+                </Button>
                 )}
-              
               {teamSaved && (
                 <Alert severity="success">Team is saved successfully.</Alert>
               )}
