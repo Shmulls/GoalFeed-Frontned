@@ -133,6 +133,7 @@ const EditProfile = () => {
       display="flex"
       flexDirection="column"
       justifyContent="center"
+      margin={"top"}
       alignItems="center"
       minHeight="100vh"
       gap={2}
@@ -153,14 +154,20 @@ const EditProfile = () => {
           resetForm,
         }) => (
           <form onSubmit={handleSubmit}>
-            <Box>
+            <Box
+            alignItems="center"
+            sx={{
+              display: "flex",
+              justifyContent: "space-between", // Adjust the value as needed to control the spacing
+            }}
+             >
               <Button
-                variant="outlined"
+                variant="text"
                 onClick={() => handleFieldOpen("firstName")}
               >
                 Change First Name
               </Button>
-              <Collapse in={openField === "firstName"}>
+              
                 <TextField
                   label="First Name"
                   onBlur={handleBlur}
@@ -171,6 +178,11 @@ const EditProfile = () => {
                     Boolean(touched.firstName) && Boolean(errors.firstName)
                   }
                   helperText={touched.firstName && errors.firstName}
+                  sx={{
+                    width: "500px", // Replace '500px' with the desired width value
+                    marginLeft: "25px",
+                  }}
+                  
                 />
                 <Button
                   type="submit"
@@ -178,22 +190,28 @@ const EditProfile = () => {
                 >
                   Save
                 </Button>
-              </Collapse>
+              
               {firstNameSaved && (
                 <Alert severity="success">
                   First Name is saved successfully.
                 </Alert>
               )}
             </Box>
+            <br />
 
-            <Box>
+            <Box
+            alignItems="center"
+            sx={{
+              display: "flex",
+              justifyContent: "space-between", // Adjust the value as needed to control the spacing
+            }}>
               <Button
-                variant="outlined"
+                variant="text"
                 onClick={() => handleFieldOpen("lastName")}
               >
                 Change Last Name
               </Button>
-              <Collapse in={openField === "lastName"}>
+              
                 <TextField
                   label="Last Name"
                   onBlur={handleBlur}
@@ -202,6 +220,10 @@ const EditProfile = () => {
                   name="lastName"
                   error={Boolean(touched.lastName) && Boolean(errors.lastName)}
                   helperText={touched.lastName && errors.lastName}
+                  sx={{
+                    width: "500px", // Replace '500px' with the desired width value
+                    marginLeft: "28px",
+                  }}
                 />
                 <Button
                   type="submit"
@@ -209,23 +231,31 @@ const EditProfile = () => {
                 >
                   Save
                 </Button>
-              </Collapse>
+              
               {lastNameSaved && (
                 <Alert severity="success">
                   Last Name is saved successfully.
                 </Alert>
               )}
             </Box>
+            <br />
 
-            <Box>
+            <Box
+            alignItems="center"
+            sx={{
+              display: "flex",
+              justifyContent: "space-between", // Adjust the value as needed to control the spacing
+            }}
+             >
               <Button
-                variant="outlined"
+                variant="text"
                 onClick={() => handleFieldOpen("email")}
               >
                 Change Email
               </Button>
-              <Collapse in={openField === "email"}>
+              
                 <TextField
+                
                   label="Email"
                   onBlur={handleBlur}
                   onChange={handleChange}
@@ -233,6 +263,10 @@ const EditProfile = () => {
                   name="email"
                   error={Boolean(touched.email) && Boolean(errors.email)}
                   helperText={touched.email && errors.email}
+                  sx={{
+                    width: "500px", // Replace '300px' with the desired width value
+                    marginLeft: "55px",
+                  }}
                 />
                 <Button
                   type="submit"
@@ -240,20 +274,26 @@ const EditProfile = () => {
                 >
                   Save
                 </Button>
-              </Collapse>
+              
               {emailSaved && (
                 <Alert severity="success">Email is saved successfully.</Alert>
               )}
             </Box>
+            <br />
 
-            <Box>
+            <Box
+            alignItems="center"
+            sx={{
+              display: "flex",
+              justifyContent: "space-between", // Adjust the value as needed to control the spacing
+            }}>
               <Button
-                variant="outlined"
+                variant="text"
                 onClick={() => handleFieldOpen("password")}
               >
                 Change Password
               </Button>
-              <Collapse in={openField === "password"}>
+              
                 <TextField
                   label="Password"
                   onBlur={handleBlur}
@@ -263,6 +303,10 @@ const EditProfile = () => {
                   type="password"
                   error={Boolean(touched.password) && Boolean(errors.password)}
                   helperText={touched.password && errors.password}
+                  sx={{
+                    width: "500px", // Replace '500px' with the desired width value
+                    marginLeft: "28px",
+                  }}
                 />
                 <Button
                   type="submit"
@@ -270,22 +314,28 @@ const EditProfile = () => {
                 >
                   Save
                 </Button>
-              </Collapse>
+              
               {passwordSaved && (
                 <Alert severity="success">
                   Password is saved successfully.
                 </Alert>
               )}
             </Box>
+            <br />
 
-            <Box>
+            <Box
+            alignItems="center"
+            sx={{
+              display: "flex",
+              justifyContent: "space-between", // Adjust the value as needed to control the spacing
+            }}>
               <Button
-                variant="outlined"
+                variant="text"
                 onClick={() => handleFieldOpen("phoneNumber")}
               >
                 Change Phone Number
               </Button>
-              <Collapse in={openField === "phoneNumber"}>
+              
                 <TextField
                   label="Phone Number"
                   onBlur={handleBlur}
@@ -296,6 +346,9 @@ const EditProfile = () => {
                     Boolean(touched.phoneNumber) && Boolean(errors.phoneNumber)
                   }
                   helperText={touched.phoneNumber && errors.phoneNumber}
+                  sx={{
+                    width: "500px", // Replace '500px' with the desired width value
+                  }}
                 />
                 <Button
                   type="submit"
@@ -303,22 +356,24 @@ const EditProfile = () => {
                 >
                   Save
                 </Button>
-              </Collapse>
+              
               {phoneNumberSaved && (
                 <Alert severity="success">
                   Phone Number is saved successfully.
                 </Alert>
               )}
             </Box>
+            <br />
+            <br />
 
             <Box>
               <Button
-                variant="outlined"
+                variant="text"
                 onClick={() => handleFieldOpen("picture")}
               >
-                {isPictureOpen ? "Close Picture" : "Change Picture"}
+                {isPictureOpen ? "Change Picture" : "Change Picture"}
               </Button>
-              <Collapse in={isPictureOpen}>
+              
                 <Dropzone
                   acceptedFiles=".jpg,.jpeg,.png"
                   multiple={false}
@@ -351,20 +406,22 @@ const EditProfile = () => {
                     Save Picture
                   </Button>
                 )}
-              </Collapse>
+              
               {pictureSaved && (
                 <Alert severity="success">Picture is saved successfully.</Alert>
               )}
             </Box>
+            <br />
+            <br />
 
             <Box>
               <Button
-                variant="outlined"
+                variant="text"
                 onClick={() => handleFieldOpen("team")}
               >
-                {isTeamOpen ? "Close Team" : "Change Team"}
+                {isTeamOpen ? "Change Team" : "Change Team"}
               </Button>
-              <Collapse in={isTeamOpen}>
+              
                 <Team_pic
                   selectedTeam={selectedTeam}
                   handleTeamSelection={handleTeamSelection}
@@ -377,14 +434,16 @@ const EditProfile = () => {
                     Save Team
                   </Button>
                 )}
-              </Collapse>
+              
               {teamSaved && (
                 <Alert severity="success">Team is saved successfully.</Alert>
               )}
             </Box>
+            <br />
+            <br />
 
             <Button
-              variant="outlined"
+              variant="contained"
               onClick={() => navigate(`/profile/${userId}`)}
             >
               Back
