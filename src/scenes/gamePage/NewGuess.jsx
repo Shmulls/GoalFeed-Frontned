@@ -54,8 +54,8 @@ const NewGuess = () => {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
-      const userGuessesData = response.data;
-      console.log("sdsfsdf"+userGuessesData);
+      const userGuessesData = await response.json();
+      // console.log("userGuessesData" + userGuessesData);
       const userGuessesArray = Array.isArray(userGuessesData)
         ? userGuessesData
         : Object.values(userGuessesData);
@@ -72,9 +72,9 @@ const NewGuess = () => {
       // const response = await axios.post('http://localhost:3001/api/make-guess'
       const response = await fetch(`${BASE_URL}/game/${userId}/makeguess`, {
         method: "PATCH",
-        headers: { 
+        headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}` 
+          Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({
           gameId: selectedGame,
@@ -82,10 +82,9 @@ const NewGuess = () => {
           awayTeamScore,
         }),
       });
-      console.log(response.data);
+      //console.log(response.data);
       fetchUserGuesses();
     } catch (error) {
-      
       console.error(error.response);
     }
   };
@@ -98,15 +97,11 @@ const NewGuess = () => {
           Select a Game:
           <select className="new-guess-select" value={selectedGame} onChange={handleGameChange}>
             <option value="">Select a game</option>
-            {games && games.length > 0 ? (
-              games.map((game) => (
+            {games.map((game) => (
               <option key={game._id} value={game._id}>
-               {game.homeTeam} vs {game.awayTeam}
-             </option>
-            ))
-            ) : (
-               <option value="">No games available</option>
-            )}
+                {game.homeTeam} vs {game.awayTeam}
+              </option>
+            ))}
           </select>
         </label>
         <br />
