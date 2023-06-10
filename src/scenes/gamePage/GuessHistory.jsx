@@ -14,10 +14,13 @@ const validGuessHistory = () => {
 
   const fetchUserGuesses = async () => {
     try {
-      const response = await fetch(`${BASE_URL}/game/${userId}/getactivegameiguess`, {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await fetch(
+        `${BASE_URL}/game/${userId}/getactivegameiguess`,
+        {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       //const response = await axios.get('http://localhost:3001/api/guessing-history-valid');
       const userGuessesData = await response.json(); // Parse the response as JSON
       console.log(userGuessesData);
@@ -34,7 +37,7 @@ const validGuessHistory = () => {
   }, []);
   return (
     <>
-      <h3>Your Guesses that can be changed:</h3>
+      <h3>Active games guesses (can be modified):</h3>
       <ListGroup>
         {userGuesses.map((guess) => (
           <ListGroup.Item key={guess._id}>

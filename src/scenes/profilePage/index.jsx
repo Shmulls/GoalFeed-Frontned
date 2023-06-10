@@ -30,7 +30,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     getUser();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleWidgetSelection = (widget) => {
     setSelectedWidget(widget);

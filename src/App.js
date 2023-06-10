@@ -9,6 +9,7 @@ import ProfilePage from "scenes/profilePage";
 import EditProfile from "scenes/editProfile";
 import GameManager from "scenes/gamePage";
 import { themeSettings } from "./theme";
+import GameComplete from "scenes/gamePage/GameComplete";
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -37,6 +38,10 @@ function App() {
             <Route
               path="/:userId/Game"
               element={isAuth ? <GameManager /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/:userId/Game/GameComplete"
+              element={isAuth ? <GameComplete /> : <Navigate to="/" />}
             />
           </Routes>
         </ThemeProvider>

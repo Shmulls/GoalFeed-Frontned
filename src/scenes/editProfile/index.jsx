@@ -173,22 +173,20 @@ const EditProfile = () => {
                 onChange={handleChange}
                 value={values.firstName}
                 name="firstName"
-                error={
-                    Boolean(touched.firstName) && Boolean(errors.firstName)
-                  }
+                error={Boolean(touched.firstName) && Boolean(errors.firstName)}
                 helperText={touched.firstName && errors.firstName}
                 sx={{
                   width: "500px", // Replace '500px' with the desired width value
-                    marginLeft: "25px",
-                  }}
+                  marginLeft: "25px",
+                }}
               />
               <Button
                 type="submit"
                 onClick={() => handleFieldSave(values, "firstName")}
               >
-                  Save
-                </Button>
-              
+                Save
+              </Button>
+
               {firstNameSaved && (
                 <Alert severity="success">
                   First Name is saved successfully.
@@ -198,38 +196,39 @@ const EditProfile = () => {
             <br />
 
             <Box
-            alignItems="center"
-            sx={{
-              display: "flex",
-              justifyContent: "space-between", // Adjust the value as needed to control the spacing
-            }}>
+              alignItems="center"
+              sx={{
+                display: "flex",
+                justifyContent: "space-between", // Adjust the value as needed to control the spacing
+              }}
+            >
               <Button
                 variant="text"
                 onClick={() => handleFieldOpen("lastName")}
               >
                 Change Last Name
               </Button>
-              
-                <TextField
-                  label="Last Name"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.lastName}
-                  name="lastName"
-                  error={Boolean(touched.lastName) && Boolean(errors.lastName)}
-                  helperText={touched.lastName && errors.lastName}
-                  sx={{
-                    width: "500px", // Replace '500px' with the desired width value
-                    marginLeft: "28px",
-                  }}
-                />
-                <Button
-                  type="submit"
-                  onClick={() => handleFieldSave(values, "lastName")}
-                >
-                  Save
-                </Button>
-              
+
+              <TextField
+                label="Last Name"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.lastName}
+                name="lastName"
+                error={Boolean(touched.lastName) && Boolean(errors.lastName)}
+                helperText={touched.lastName && errors.lastName}
+                sx={{
+                  width: "500px", // Replace '500px' with the desired width value
+                  marginLeft: "28px",
+                }}
+              />
+              <Button
+                type="submit"
+                onClick={() => handleFieldSave(values, "lastName")}
+              >
+                Save
+              </Button>
+
               {lastNameSaved && (
                 <Alert severity="success">
                   Last Name is saved successfully.
@@ -239,40 +238,36 @@ const EditProfile = () => {
             <br />
 
             <Box
-            alignItems="center"
-            sx={{
-              display: "flex",
-              justifyContent: "space-between", // Adjust the value as needed to control the spacing
-            }}
-             >
-              <Button
-                variant="text"
-                onClick={() => handleFieldOpen("email")}
-              >
+              alignItems="center"
+              sx={{
+                display: "flex",
+                justifyContent: "space-between", // Adjust the value as needed to control the spacing
+              }}
+            >
+              <Button variant="text" onClick={() => handleFieldOpen("email")}>
                 Change Email
               </Button>
-              
-                <TextField
-                
-                  label="Email"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.email}
-                  name="email"
-                  error={Boolean(touched.email) && Boolean(errors.email)}
-                  helperText={touched.email && errors.email}
-                  sx={{
-                    width: "500px", // Replace '300px' with the desired width value
-                    marginLeft: "55px",
-                  }}
-                />
-                <Button
-                  type="submit"
-                  onClick={() => handleFieldSave(values, "email")}
-                >
-                  Save
-                </Button>
-              
+
+              <TextField
+                label="Email"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.email}
+                name="email"
+                error={Boolean(touched.email) && Boolean(errors.email)}
+                helperText={touched.email && errors.email}
+                sx={{
+                  width: "500px", // Replace '300px' with the desired width value
+                  marginLeft: "55px",
+                }}
+              />
+              <Button
+                type="submit"
+                onClick={() => handleFieldSave(values, "email")}
+              >
+                Save
+              </Button>
+
               {emailSaved && (
                 <Alert severity="success">Email is saved successfully.</Alert>
               )}
@@ -280,39 +275,40 @@ const EditProfile = () => {
             <br />
 
             <Box
-            alignItems="center"
-            sx={{
-              display: "flex",
-              justifyContent: "space-between", // Adjust the value as needed to control the spacing
-            }}>
+              alignItems="center"
+              sx={{
+                display: "flex",
+                justifyContent: "space-between", // Adjust the value as needed to control the spacing
+              }}
+            >
               <Button
                 variant="text"
                 onClick={() => handleFieldOpen("password")}
               >
                 Change Password
               </Button>
-              
-                <TextField
-                  label="Password"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.password}
-                  name="password"
-                  type="password"
-                  error={Boolean(touched.password) && Boolean(errors.password)}
-                  helperText={touched.password && errors.password}
-                  sx={{
-                    width: "500px", // Replace '500px' with the desired width value
-                    marginLeft: "28px",
-                  }}
-                />
-                <Button
-                  type="submit"
-                  onClick={() => handleFieldSave(values, "password")}
-                >
-                  Save
-                </Button>
-              
+
+              <TextField
+                label="Password"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.password}
+                name="password"
+                type="password"
+                error={Boolean(touched.password) && Boolean(errors.password)}
+                helperText={touched.password && errors.password}
+                sx={{
+                  width: "500px", // Replace '500px' with the desired width value
+                  marginLeft: "28px",
+                }}
+              />
+              <Button
+                type="submit"
+                onClick={() => handleFieldSave(values, "password")}
+              >
+                Save
+              </Button>
+
               {passwordSaved && (
                 <Alert severity="success">
                   Password is saved successfully.
@@ -322,39 +318,40 @@ const EditProfile = () => {
             <br />
 
             <Box
-            alignItems="center"
-            sx={{
-              display: "flex",
-              justifyContent: "space-between", // Adjust the value as needed to control the spacing
-            }}>
+              alignItems="center"
+              sx={{
+                display: "flex",
+                justifyContent: "space-between", // Adjust the value as needed to control the spacing
+              }}
+            >
               <Button
                 variant="text"
                 onClick={() => handleFieldOpen("phoneNumber")}
               >
                 Change Phone Number
               </Button>
-              
-                <TextField
-                  label="Phone Number"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.phoneNumber}
-                  name="phoneNumber"
-                  error={
-                    Boolean(touched.phoneNumber) && Boolean(errors.phoneNumber)
-                  }
-                  helperText={touched.phoneNumber && errors.phoneNumber}
-                  sx={{
-                    width: "500px", // Replace '500px' with the desired width value
-                  }}
-                />
-                <Button
-                  type="submit"
-                  onClick={() => handleFieldSave(values, "phoneNumber")}
-                >
-                  Save
-                </Button>
-              
+
+              <TextField
+                label="Phone Number"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.phoneNumber}
+                name="phoneNumber"
+                error={
+                  Boolean(touched.phoneNumber) && Boolean(errors.phoneNumber)
+                }
+                helperText={touched.phoneNumber && errors.phoneNumber}
+                sx={{
+                  width: "500px", // Replace '500px' with the desired width value
+                }}
+              />
+              <Button
+                type="submit"
+                onClick={() => handleFieldSave(values, "phoneNumber")}
+              >
+                Save
+              </Button>
+
               {phoneNumberSaved && (
                 <Alert severity="success">
                   Phone Number is saved successfully.
@@ -365,46 +362,43 @@ const EditProfile = () => {
             <br />
 
             <Box>
-              <Button
-                variant="text"
-                onClick={() => handleFieldOpen("picture")}
-              >
+              <Button variant="text" onClick={() => handleFieldOpen("picture")}>
                 {isPictureOpen ? "Change Picture" : "Change Picture"}
               </Button>
-              
-                <Dropzone
-                  acceptedFiles=".jpg,.jpeg,.png"
-                  multiple={false}
-                  onDrop={handleDrop}
-                >
-                  {({ getRootProps, getInputProps }) => (
-                    <Box
-                      {...getRootProps()}
-                      border={`2px dashed ${palette.primary.main}`}
-                      p="1rem"
-                      sx={{ "&:hover": { cursor: "pointer" } }}
-                    >
-                      <input {...getInputProps()} />
-                      {!picture ? (
-                        <p>Add Picture Here</p>
-                      ) : (
-                        <FlexBetween>
-                          <Typography>{picture.name}</Typography>
-                          <EditOutlinedIcon />
-                        </FlexBetween>
-                      )}
-                    </Box>
-                  )}
-                </Dropzone>
-                {isPictureChanged && (
-                  <Button
-                    type="submit"
-                    onClick={() => handleFieldSave(values, "picture")}
+
+              <Dropzone
+                acceptedFiles=".jpg,.jpeg,.png"
+                multiple={false}
+                onDrop={handleDrop}
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <Box
+                    {...getRootProps()}
+                    border={`2px dashed ${palette.primary.main}`}
+                    p="1rem"
+                    sx={{ "&:hover": { cursor: "pointer" } }}
                   >
-                    Save Picture
-                  </Button>
+                    <input {...getInputProps()} />
+                    {!picture ? (
+                      <p>Add Picture Here</p>
+                    ) : (
+                      <FlexBetween>
+                        <Typography>{picture.name}</Typography>
+                        <EditOutlinedIcon />
+                      </FlexBetween>
+                    )}
+                  </Box>
                 )}
-              
+              </Dropzone>
+              {isPictureChanged && (
+                <Button
+                  type="submit"
+                  onClick={() => handleFieldSave(values, "picture")}
+                >
+                  Save Picture
+                </Button>
+              )}
+
               {pictureSaved && (
                 <Alert severity="success">Picture is saved successfully.</Alert>
               )}
@@ -413,25 +407,22 @@ const EditProfile = () => {
             <br />
 
             <Box>
-              <Button
-                variant="text"
-                onClick={() => handleFieldOpen("team")}
-              >
+              <Button variant="text" onClick={() => handleFieldOpen("team")}>
                 {isTeamOpen ? "Change Team" : "Change Team"}
               </Button>
-              
-                <Team_pic
-                  selectedTeam={selectedTeam}
-                  handleTeamSelection={handleTeamSelection}
-                />
+
+              <Team_pic
+                selectedTeam={selectedTeam}
+                handleTeamSelection={handleTeamSelection}
+              />
               {selectedTeam !== "" && (
                 <Button
-                    type="submit"
-                    onClick={() => handleFieldSave(values, "team")}
+                  type="submit"
+                  onClick={() => handleFieldSave(values, "team")}
                 >
-                    Save Team
+                  Save Team
                 </Button>
-                )}
+              )}
               {teamSaved && (
                 <Alert severity="success">Team is saved successfully.</Alert>
               )}

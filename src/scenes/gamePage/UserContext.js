@@ -1,22 +1,33 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useMemo } from "react";
 
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   const [loggedInUsername, setLoggedInUsername] = useState("");
-  const [loggedInToken, setLoggedInToken] = useState(""); // Add loggedInToken state
+  const [loggedInToken, setLoggedInToken] = useState("");
   const [userGuesses, setUserGuesses] = useState([]);
-  return (
-    <UserContext.Provider value={{
+
+  const contextValue = useMemo(
+    () => ({
       loggedInUsername,
       setLoggedInUsername,
       loggedInToken,
       setLoggedInToken,
       userGuesses,
-      setUserGuesses }}
-    >
-      {children}
-    </UserContext.Provider>
+      setUserGuesses,
+    }),
+    [
+      loggedInUsername,
+      setLoggedInUsername,
+      loggedInToken,
+      setLoggedInToken,
+      userGuesses,
+      setUserGuesses,
+    ]
+  );
+
+  return (
+    <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
   );
 };
 
