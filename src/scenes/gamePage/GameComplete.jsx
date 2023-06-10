@@ -1,10 +1,13 @@
 import { Button, Typography, useTheme } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import EndedGames from "./EndedGames";
 
-const GameComplete = ({ userId }) => {
+const GameComplete = () => {
   const navigate = useNavigate();
+  const { _id, picturePath } = useSelector((state) => state.user);
+  const { userId } = useParams();
 
   return (
     <div>
@@ -18,7 +21,7 @@ const GameComplete = ({ userId }) => {
         sx={{ mx: "auto" }}
         onClick={(event) => {
           event.stopPropagation();
-          navigate(`/${userId}/Game`);
+          navigate(`/${_id}/Game`);
         }}
       >
         To the GoalFeed game

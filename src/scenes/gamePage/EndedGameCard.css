@@ -1,53 +1,111 @@
 .ended-game-card {
-    border-radius: 8px;
-    background-color: #000000;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1rem;
-    font-family: 'Roboto', sans-serif;
-    padding: 1rem;
-  }
-  
-  .ended-game-id {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  .ended-game-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-  }
-  
-  .ended-teams {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
-  }
-  
-  .ended-team {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .ended-vs {
-    margin: 0 0.5rem;
-    font-size: 16px;
-  }
-  
-  .ended-scores {
-    display: flex;
-    justify-content: space-between;
-    width: 450px;
-  }
-  
-  .ended-home-score,
-  .ended-away-score {
-    font-size: 14px;
-    font-weight: bold;
-    padding: 0.25rem 0.5rem;
-    flex-direction: row;
-    /* text-align: center; */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.teams-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.team-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.team-logo img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.team-logo p {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.vs-container {
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+  font-size: 24px;
+  color: #666;
+}
+
+.game-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.guess-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.guess-row span {
+  font-size: 24px;
+  color: #666;
+  margin: 0 5px;
+}
+
+
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.points-icon {
+  display: flex;
+  align-items: center;
+}
+
+.point-icon {
+  margin-left: 5px;
+  font-size: 24px;
+}
+
+.green {
+  color: green;
+}
+
+.orange {
+  color: orange;
+}
+
+.red {
+  color: red;
+}
+.guess-label {
+  margin-right: 5px;
+  font-size: 20px;
+}
+
+.guess-numbers {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.guess-numbers p {
+  margin: 0;
+  margin-left: 5px;
+}
+
