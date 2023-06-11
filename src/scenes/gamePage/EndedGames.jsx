@@ -5,6 +5,7 @@ import BASE_URL from "back_url";
 import { useParams } from "react-router-dom";
 import "./EndedGames.css";
 import EndedGameCard from "./EndedGameCard";
+import UserStatus from "./UserStatus";
 
 const EndedGames = () => {
   const token = useSelector((state) => state.token);
@@ -31,10 +32,11 @@ const EndedGames = () => {
 
   return (
     <div className="ended-games-container">
-      <h3 className="ended-games-title">Your Ended Games:</h3>
+      <h3 className="ended-games-title" style={{ textAlign: "center" }}>Games history</h3>
       {endedGames.map((game) => (
         <EndedGameCard key={game._id} game={game} />
       ))}
+      <UserStatus />
     </div>
   );
 };

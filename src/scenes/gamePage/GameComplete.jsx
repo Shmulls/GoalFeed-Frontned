@@ -11,18 +11,17 @@ const GameComplete = () => {
 
   return (
     <div>
-      <h1>Hello</h1>
       {/* Add any additional content or components here */}
       <Button
         type="submit"
         variant="contained"
         size="large"
         color="primary"
-        sx={{ mx: "auto" }}
+        sx={{ mx: "auto", mt: 4, display: "block" }}
         onClick={(event) => {
-          event.stopPropagation();
-          navigate(`/${_id}/Game`);
-        }}
+        event.stopPropagation();
+        navigate(`/${_id}/Game`);
+      }}
       >
         To the GoalFeed game
       </Button>

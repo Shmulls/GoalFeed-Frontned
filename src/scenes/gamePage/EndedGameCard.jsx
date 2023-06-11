@@ -43,9 +43,9 @@ const EndedGameCard = ({ game }) => {
           <p>{game.userAwayTeamScore}</p>
         </div>
         <div className="info-row">
-          <p>Points:</p>
-          <div className="points-icon">{getPointIcon()}</div>
+          <p>Points: {game.points}</p>
         </div>
+        <div className="points-icon">{getPointIcon()}</div>
       </div>
     </div>
   );

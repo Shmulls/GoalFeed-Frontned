@@ -3,6 +3,7 @@
   }
   
   .ended-games-title {
+    align-items: center;
     font-size: 20px;
     margin-bottom: 10px;
   }
