@@ -1,0 +1,42 @@
+.active-games-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.active-game-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.team-logo img {
+  width: 50px;
+  height: 50px;
+}
+
+.result-input {
+  margin: 0 1rem;
+}
+
+.result-input .MuiInputBase-input {
+  text-align: center; /* Center align the input value */
+}
+
+.hd-text {
+  font-size: 2.0rem;
+  font-weight: bold;
+  margin-bottom: 30px; /* Add space after the text */
+  padding-right: 120px; /* Move the text a little bit to the left */
+}
+
+.vs-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.make-guess-button {
+  margin-left: 1rem;
+}
