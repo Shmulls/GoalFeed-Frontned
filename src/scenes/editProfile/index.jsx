@@ -16,6 +16,7 @@ import BASE_URL from "back_url";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Dropzone from "react-dropzone";
+import Pic_Edit from "./pic_edit";
 import Team_pic from "components/TeamPic";
 import FlexBetween from "components/FlexBetween";
 
@@ -410,11 +411,9 @@ const EditProfile = () => {
               <Button variant="text" onClick={() => handleFieldOpen("team")}>
                 {isTeamOpen ? "Change Team" : "Change Team"}
               </Button>
-
-              <Team_pic
-                selectedTeam={selectedTeam}
-                handleTeamSelection={handleTeamSelection}
-              />
+              <Pic_Edit />
+              {/* selectedTeam={selectedTeam}
+               handleTeamSelection={handleTeamSelection} */}
               {selectedTeam !== "" && (
                 <Button
                   type="submit"

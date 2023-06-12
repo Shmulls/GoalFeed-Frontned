@@ -34,7 +34,7 @@ const registerSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref("password"), null], "passwords must match")
     .required("required"),
-  phoneNumber: yup.string().required("required"),
+  phoneNumber: yup.string().required("required").matches(/^05\d{8}$/, "Phone number must start with '05' and be 10 digits"),
   picture: yup.string().required("required"),
 });
 
@@ -80,6 +80,9 @@ const Form = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
+    if (response.status === 404) {
+      alert("Email doesnt exist");
+    }
     onSubmitProps.resetForm();
     setShowForgotPasswordDialog(false);
   };
@@ -107,6 +110,7 @@ const Form = () => {
     onSubmitProps.resetForm();
 
     if (savedUser) {
+      alert("User saved successfully");
       setPageType("login");
     }
   };
@@ -118,6 +122,9 @@ const Form = () => {
       body: JSON.stringify(values),
     });
     const loggedIn = await loggedInResponse.json();
+    if (loggedInResponse.status === 400) {
+      alert("Email or password is incorrect");
+    }
     onSubmitProps.resetForm();
     if (loggedIn) {
       dispatch(
@@ -187,7 +194,10 @@ const Form = () => {
                 <TextField
                   label="Phone Number"
                   onBlur={handleBlur}
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    const { value } = e.target;
+                    setFieldValue("phoneNumber", value.replace(/\D/g, ""));
+                  }}
                   value={values.phoneNumber}
                   name="phoneNumber"
                   error={

@@ -25,14 +25,14 @@ const pic_edit = ({ handleTeamSelection }) => {
               onClick={() => handleTeamClick("MHFC")}
               className={selectedTeam === "MHFC" ? "selected" : ""}
             >
-              <img src="../assets/MHFC.png" width={90} alt="MHFC" />
+              <img src="/assets/MHFC.png" width={90} alt="MHFC" />
             </button>
             <button
               type="button"
               onClick={() => handleTeamClick("AFC")}
               className={selectedTeam === "AFC" ? "selected" : ""}
             >
-              <img src="../assets/AFC.png" width={90} alt="AFC" />
+              <img src="/assets/AFC.png" width={90} alt="AFC" />
             </button>
             <button
               type="button"
@@ -40,7 +40,7 @@ const pic_edit = ({ handleTeamSelection }) => {
               className={selectedTeam === "AHFC" ? "selected" : ""}
             >
               <img
-                src="../assets/AHFC.png"
+                src="/assets/AHFC.png"
                 width={90}
                 height={90}
                 alt="AHFC"
@@ -52,7 +52,7 @@ const pic_edit = ({ handleTeamSelection }) => {
               onClick={() => handleTeamClick("FCBJ")}
               className={selectedTeam === "FCBJ" ? "selected" : ""}
             >
-              <img src="../assets/FCBJ.png" width={90} alt="FCBJ" />
+              <img src="/assets/FCBJ.png" width={90} alt="FCBJ" />
             </button>
             <button
               type="button"
@@ -60,7 +60,7 @@ const pic_edit = ({ handleTeamSelection }) => {
               className={selectedTeam === "HBSFC" ? "selected" : ""}
             >
               <img
-                src="../assets/HBSFC.png"
+                src="/assets/HBSFC.png"
                 width={90}
                 height={90}
                 alt="HBSFC"
@@ -73,7 +73,7 @@ const pic_edit = ({ handleTeamSelection }) => {
               className={selectedTeam === "HHFC" ? "selected" : ""}
             >
               <img
-                src="../assets/HHFC.png"
+                src="/assets/HHFC.png"
                 width={90}
                 height={90}
                 alt="HHFC"
@@ -85,28 +85,28 @@ const pic_edit = ({ handleTeamSelection }) => {
               onClick={() => handleTeamClick("HJFC")}
               className={selectedTeam === "HJFC" ? "selected" : ""}
             >
-              <img src="../assets/HJFC.png" width={90} height={90} alt="HJFC" />
+              <img src="/assets/HJFC.png" width={90} height={90} alt="HJFC" />
             </button>
             <button
               type="button"
               onClick={() => handleTeamClick("HTA")}
               className={selectedTeam === "HTA" ? "selected" : ""}
             >
-              <img src="../assets/HTA.png" width={90} alt="HTA" />
+              <img src="/assets/HTA.png" width={90} alt="HTA" />
             </button>
             <button
               type="button"
               onClick={() => handleTeamClick("MTA")}
               className={selectedTeam === "MTA" ? "selected" : ""}
             >
-              <img src="../assets/MTA.png" width={90} alt="MTA" />
+              <img src="/assets/MTA.png" width={90} alt="MTA" />
             </button>
             <button
               type="button"
               onClick={() => handleTeamClick("MNFC")}
               className={selectedTeam === "MNFC" ? "selected" : ""}
             >
-              <img src="../assets/MNFC.png" width={90} alt="MNFC" />
+              <img src="/assets/MNFC.png" width={90} alt="MNFC" />
             </button>
 
             {/* Add the rest of the teams here */}

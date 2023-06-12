@@ -125,7 +125,7 @@ const Navbar = () => {
           <IconButton onClick={handleHelpClick}>
             <Help sx={{ color: dark, fontSize: "25px" }} />
           </IconButton>
-          <FormControl variant="standard" value={fullName}>
+          <FormControl variant="standard">
             <Select
               value={fullName}
               sx={{
@@ -142,10 +142,10 @@ const Navbar = () => {
                 },
               }}
               input={<InputBase />}
-            >
-              <MenuItem value={fullName}>
+              renderValue={() => (
                 <Typography>{fullName}</Typography>
-              </MenuItem>
+              )}
+            >
               <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
               <MenuItem onClick={handleDeleteClick}>
                 <Typography>Delete User</Typography>
