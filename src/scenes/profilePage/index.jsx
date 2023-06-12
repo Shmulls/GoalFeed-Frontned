@@ -1,7 +1,8 @@
-import { Box, useMediaQuery, Button } from "@mui/material";
+import { Box, useMediaQuery, Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import WidgetWrapper from "components/WidgetWrapper";
 import Navbar from "scenes/navbar";
 import FriendListWidget from "scenes/widgets/FriendListWidget";
 import MyPostWidget from "scenes/widgets/MyPostWidget";
@@ -9,6 +10,8 @@ import PostsWidget from "scenes/widgets/PostsWidget";
 import PostLikeWidget from "scenes/widgets/PostLikeWidget";
 import PostSaveWidget from "scenes/widgets/PostSaveWidget";
 import UserWidget from "scenes/widgets/UserWidget";
+import StaticData from "./StaticData";
+import UserStatus from "scenes/gamePage/UserStatus";
 import BASE_URL from "back_url";
 
 const ProfilePage = () => {
@@ -95,6 +98,20 @@ const ProfilePage = () => {
           {selectedWidget === "saved" && (
             <PostSaveWidget userId={userId} isProfile />
           )}
+        </Box>
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <Box marginLeft="10px" width="300px">
+            <WidgetWrapper>
+              <StaticData />
+            </WidgetWrapper>
+          </Box>
+          <Box m="1rem 0" />
+          <Box marginLeft="10px" width="300px">
+            <WidgetWrapper>
+              <h2 style={{ textAlign: "center" }}>GoalFeed game</h2>
+              <UserStatus userId={userId} />
+            </WidgetWrapper>
+          </Box>
         </Box>
       </Box>
     </Box>
