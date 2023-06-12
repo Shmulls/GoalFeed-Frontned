@@ -26,9 +26,11 @@ import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
 import BASE_URL from "back_url";
 import SearchComponent from "scenes/widgets/SearchComponent";
+import PoliciesPopup from "./PoliciesPopup";
 
 const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
+  const [isPoliciesPopupOpen, setIsPoliciesPopupOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
@@ -41,6 +43,14 @@ const Navbar = () => {
   const alt = theme.palette.background.alt;
 
   const fullName = `${user.firstName} ${user.lastName}`;
+
+  const handleHelpClick = () => {
+    setIsPoliciesPopupOpen(true);
+  };
+
+  const handlePoliciesPopupClose = () => {
+    setIsPoliciesPopupOpen(false);
+  };
 
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
@@ -81,7 +91,9 @@ const Navbar = () => {
               <LightMode sx={{ color: dark, fontSize: "25px" }} />
             )}
           </IconButton>
-          <Help sx={{ fontSize: "25px" }} />
+          <IconButton onClick={handleHelpClick}>
+            <Help sx={{ color: dark, fontSize: "25px" }} />
+          </IconButton>
           <FormControl variant="standard" value={fullName}>
             <Select
               value={fullName}
@@ -186,6 +198,7 @@ const Navbar = () => {
           </FlexBetween>
         </Box>
       )}
+      {isPoliciesPopupOpen && <PoliciesPopup onClose={handlePoliciesPopupClose} />}
     </FlexBetween>
   );
 };
