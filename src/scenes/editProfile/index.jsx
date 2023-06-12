@@ -41,6 +41,7 @@ const initialValuesProfile = {
   password: "",
   phoneNumber: "",
   picture: "",
+  team: "",
 };
 
 const EditProfile = () => {
@@ -79,6 +80,7 @@ const EditProfile = () => {
   };
 
   const handleFieldSave = async (values, field) => {
+    console.log("values", values);
     const changeResponse = await fetch(`${BASE_URL}/users/${userId}/change`, {
       method: "PATCH",
       headers: {
@@ -411,11 +413,12 @@ const EditProfile = () => {
               <Button variant="text" onClick={() => handleFieldOpen("team")}>
                 {isTeamOpen ? "Change Team" : "Change Team"}
               </Button>
-              <Pic_Edit />
+              <Pic_Edit handleTeamSelection={handleTeamSelection} />
               {/* selectedTeam={selectedTeam}
                handleTeamSelection={handleTeamSelection} */}
               {selectedTeam !== "" && (
                 <Button
+                  value={values.team}
                   type="submit"
                   onClick={() => handleFieldSave(values, "team")}
                 >
