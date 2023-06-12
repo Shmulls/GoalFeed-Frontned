@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Box, useMediaQuery, Popover, Typography } from "@mui/material";
+import { Button, Box, Divider, useMediaQuery, Popover, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import ValidGuessHistory from "./GuessHistory";
@@ -103,6 +103,7 @@ const GameManager = () => {
         <Box display="flex" marginTop="50px" paddingRight="120px">
           <Box flexBasis="30.00%" marginTop="50px" marginLeft="2rem" alignItems="center" display="flex" flexDirection="column" justifyContent="left">
             <UserStatus />
+            <hr style={{ width: "70%", height: "1px", background: "gray", margin: "1rem 0" }} />
             <FriendGameWidget userId={userId} />
           </Box>
           <Box flexBasis="70.00%" display="flex" justifyContent="left">

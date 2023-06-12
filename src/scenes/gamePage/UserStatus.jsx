@@ -46,8 +46,10 @@ const UserStatus = () => {
 
   return (
     <div className="user-status-container">
-      <h2>Total Score :</h2>
-      <h2>{totalScore}</h2>
+      <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
+        <h2>Total Score:</h2>
+        <h2>{totalScore}</h2>
+      </div>
       {trophies.map((trophyName) => (
         <img src={`/assets/${trophyName}.png`} width="70px" height="98px" style={{ borderRadius: "50%" }} alt="Trophy" key={trophyName} />
       ))}
