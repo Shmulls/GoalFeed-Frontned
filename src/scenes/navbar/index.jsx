@@ -1,6 +1,11 @@
 import { useState } from "react";
 import {
   Box,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
   IconButton,
   InputBase,
   Typography,
@@ -33,6 +38,8 @@ const Navbar = () => {
   const [isPoliciesPopupOpen, setIsPoliciesPopupOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const token = useSelector((state) => state.token);
+  const [openDialog, setOpenDialog] = useState(false);
   const user = useSelector((state) => state.user);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   const theme = useTheme();
@@ -43,6 +50,30 @@ const Navbar = () => {
   const alt = theme.palette.background.alt;
 
   const fullName = `${user.firstName} ${user.lastName}`;
+
+  const deleteUser = async () => {
+    // Implement your delete user logic here
+    // Example: dispatch(deleteUserAction());
+    const response = await fetch(`${BASE_URL}/users/${user._id}/delete`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    console.log("Delete user function ");
+    console.log(user._id);
+    if (response.ok) {
+      // User and associated data deleted successfully
+      dispatch(setLogout());
+    }
+    setOpenDialog(false);
+  };
+
+  const handleDeleteClick = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCancelClick = () => {
+    setOpenDialog(false);
+  };
 
   const handleHelpClick = () => {
     setIsPoliciesPopupOpen(true);
@@ -116,7 +147,20 @@ const Navbar = () => {
                 <Typography>{fullName}</Typography>
               </MenuItem>
               <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
+              <MenuItem onClick={handleDeleteClick}>
+                <Typography>Delete User</Typography>
+              </MenuItem>
             </Select>
+            <Dialog open={openDialog} onClose={handleCancelClick}>
+              <DialogTitle>Confirmation</DialogTitle>
+              <DialogContent>
+                <Typography>Are you sure you want to delete the user?</Typography>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleCancelClick}>No</Button>
+                <Button onClick={deleteUser}>Yes</Button>
+              </DialogActions>
+            </Dialog>
           </FormControl>
         </FlexBetween>
       ) : (
