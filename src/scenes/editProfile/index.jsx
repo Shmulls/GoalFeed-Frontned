@@ -40,6 +40,7 @@ const initialValuesProfile = {
   password: "",
   phoneNumber: "",
   picture: "",
+  picturePath: "",
   team: "",
 };
 
@@ -81,14 +82,23 @@ const EditProfile = () => {
   };
 
   const handleFieldSave = async (values, field) => {
-    console.log("values", values);
+    const formData = new FormData();
+    formData.append("picture", picture);
+    formData.append("picturePath", picture.name);
+    formData.append("firstName", values.firstName);
+    formData.append("lastName", values.lastName);
+    formData.append("email", values.email);
+    formData.append("password", values.password);
+    formData.append("phoneNumber", values.phoneNumber);
+    formData.append("team", values.team);
+
     const changeResponse = await fetch(`${BASE_URL}/users/${userId}/change`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
+        // "Content-Type": "application/json",
       },
-      body: JSON.stringify(values),
+      body: formData,
     });
     const changeData = await changeResponse.json();
     if (changeData.success) {
@@ -138,6 +148,7 @@ const EditProfile = () => {
     setFieldValue("picture", filePath);
     setIsPictureChanged(true);
     setDroppedImage(URL.createObjectURL(file)); // Set the dropped image preview
+    setPicture(file); // Set the selected picture in the state
   };
 
   return (
@@ -407,9 +418,7 @@ const EditProfile = () => {
               {isPictureChanged && (
                 <Button
                   type="submit"
-                  onClick={() =>
-                    handleFieldSave({ picturePath: values.picture }, "picture")
-                  }
+                  onClick={() => handleFieldSave(values, "picture")}
                 >
                   Save Picture
                 </Button>
