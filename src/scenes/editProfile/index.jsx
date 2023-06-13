@@ -64,6 +64,7 @@ const EditProfile = () => {
   const [phoneNumberSaved, setPhoneNumberSaved] = useState(false);
   const [pictureSaved, setPictureSaved] = useState(false);
   const [teamSaved, setTeamSaved] = useState(false);
+  const [droppedImage, setDroppedImage] = useState(null);
 
   const handleFieldOpen = (field) => {
     if (field === "picture") {
@@ -126,8 +127,10 @@ const EditProfile = () => {
     setIsPictureChanged(true);
   };
 
-  const handleDrop = (acceptedFiles) => {
-    setPicture(acceptedFiles[0]);
+  const handleDrop = (acceptedFiles, setFieldValue) => {
+    const file = acceptedFiles[0];
+    const filePath = file.path; // Extract the path property from the file object
+    setFieldValue("picture", filePath);
     setIsPictureChanged(true);
   };
 
@@ -372,7 +375,9 @@ const EditProfile = () => {
               <Dropzone
                 acceptedFiles=".jpg,.jpeg,.png"
                 multiple={false}
-                onDrop={handleDrop}
+                onDrop={(acceptedFiles) =>
+                  handleDrop(acceptedFiles, setFieldValue)
+                }
               >
                 {({ getRootProps, getInputProps }) => (
                   <Box
@@ -393,10 +398,13 @@ const EditProfile = () => {
                   </Box>
                 )}
               </Dropzone>
+
               {isPictureChanged && (
                 <Button
                   type="submit"
-                  onClick={() => handleFieldSave(values, "picture")}
+                  onClick={() =>
+                    handleFieldSave({ picturePath: values.picture }, "picture")
+                  }
                 >
                   Save Picture
                 </Button>
