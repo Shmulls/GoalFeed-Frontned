@@ -56,7 +56,7 @@ const ActiveGamesPage = () => {
     const { value } = event.target;
 
     // Validate input value to allow only positive whole numbers
-    const regex = /^[1-9]\d*$/;
+    const regex = /^[0-9]\d*$/;
     if (value === "" || regex.test(value)) {
       if (team === "homeTeamScore") {
         setHomeTeamResults((prevResults) => ({

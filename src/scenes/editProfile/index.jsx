@@ -122,9 +122,10 @@ const EditProfile = () => {
     onSubmitProps.resetForm();
   };
 
-  const handleTeamSelection = (team) => {
+  const handleTeamSelection = (team, setFieldValue) => {
     setSelectedTeam(team);
     setIsPictureChanged(true);
+    setFieldValue("team", team); // Set the selected team value in Formik
   };
 
   const handleDrop = (acceptedFiles, setFieldValue) => {
@@ -132,6 +133,7 @@ const EditProfile = () => {
     const filePath = file.path; // Extract the path property from the file object
     setFieldValue("picture", filePath);
     setIsPictureChanged(true);
+    setDroppedImage(URL.createObjectURL(file)); // Set the dropped image preview
   };
 
   return (
@@ -387,13 +389,14 @@ const EditProfile = () => {
                     sx={{ "&:hover": { cursor: "pointer" } }}
                   >
                     <input {...getInputProps()} />
-                    {!picture ? (
-                      <p>Add Picture Here</p>
+                    {droppedImage ? (
+                      <img
+                        src={droppedImage}
+                        alt="Dropped"
+                        style={{ maxWidth: "100%", maxHeight: "200px" }}
+                      />
                     ) : (
-                      <FlexBetween>
-                        <Typography>{picture.name}</Typography>
-                        <EditOutlinedIcon />
-                      </FlexBetween>
+                      <p>Add Picture Here</p>
                     )}
                   </Box>
                 )}
@@ -421,7 +424,11 @@ const EditProfile = () => {
               <Button variant="text" onClick={() => handleFieldOpen("team")}>
                 {isTeamOpen ? "Change Team" : "Change Team"}
               </Button>
-              <Pic_Edit handleTeamSelection={handleTeamSelection} />
+              <Pic_Edit
+                handleTeamSelection={(team) =>
+                  handleTeamSelection(team, setFieldValue)
+                }
+              />{" "}
               {/* selectedTeam={selectedTeam}
                handleTeamSelection={handleTeamSelection} */}
               {selectedTeam !== "" && (
