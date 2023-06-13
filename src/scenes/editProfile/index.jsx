@@ -83,8 +83,10 @@ const EditProfile = () => {
 
   const handleFieldSave = async (values, field) => {
     const formData = new FormData();
-    formData.append("picture", picture);
-    formData.append("picturePath", picture.name);
+    if (picture) {
+      formData.append("picture", picture);
+      formData.append("picturePath", picture.name);
+    }
     formData.append("firstName", values.firstName);
     formData.append("lastName", values.lastName);
     formData.append("email", values.email);
