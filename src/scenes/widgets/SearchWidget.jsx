@@ -1,5 +1,6 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import PostWidget from "./PostWidget";
+import { Close } from "@mui/icons-material";
 import WidgetWrapper from "components/WidgetWrapper";
 
 const SearchWidget = ({ searchResultsPosts, handleCloseResultsModal }) => {
@@ -35,9 +36,17 @@ const SearchWidget = ({ searchResultsPosts, handleCloseResultsModal }) => {
             />
           </WidgetWrapper>
         ))}
+        <Box mt={2}>
+          <Button
+            variant="contained"
+            onClick={handleCloseResultsModal}
+            startIcon={<Close />}
+          >
+            Exit
+          </Button>
+        </Box>
       </Box>
     </div>
   );
 };
-
 export default SearchWidget;
