@@ -75,6 +75,11 @@ const SearchComponent = () => {
     }
   };
 
+  const handleCloseResultsModal = () => {
+    setShowResultsModal(false);
+    navigate("/");
+  };
+
   const handleMenuItemClick = (result) => {
     navigate(`/profile/${result._id}`);
     setAnchorEl(null);
@@ -91,10 +96,6 @@ const SearchComponent = () => {
 
   const handleMenuItemClickPosts = (result) => {
     setAnchorEl(null);
-  };
-
-  const handleCloseResultsModal = () => {
-    setShowResultsModal(false);
   };
 
   return (
