@@ -17,7 +17,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Dropzone from "react-dropzone";
 import Pic_Edit from "./pic_edit";
-import Team_pic from "components/TeamPic";
 import FlexBetween from "components/FlexBetween";
 
 const profileSchema = yup.object().shape({
@@ -65,6 +64,7 @@ const EditProfile = () => {
   const [pictureSaved, setPictureSaved] = useState(false);
   const [teamSaved, setTeamSaved] = useState(false);
   const [droppedImage, setDroppedImage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleFieldOpen = (field) => {
     if (field === "picture") {
@@ -92,28 +92,32 @@ const EditProfile = () => {
     });
     const changeData = await changeResponse.json();
     if (changeData.success) {
-      setIsSaved(true);
       setOpenField("");
+
       setTimeout(() => {
-        setIsSaved(false); // Reset the success message after a delay
+        setSuccessMessage(""); // Reset the success message after a delay
       }, 3000);
 
       // Display success message for the specific field
       if (field === "firstName") {
-        setFirstNameSaved(true);
+        console.log("firstName"); // Add this line to check if the condition is being satisfied
+        setSuccessMessage("First Name changed successfully.");
       } else if (field === "lastName") {
-        setLastNameSaved(true);
+        setSuccessMessage("Last Name changed successfully.");
       } else if (field === "email") {
-        setEmailSaved(true);
+        setSuccessMessage("Email changed successfully.");
       } else if (field === "password") {
-        setPasswordSaved(true);
+        setSuccessMessage("Password changed successfully.");
       } else if (field === "phoneNumber") {
-        setPhoneNumberSaved(true);
+        setSuccessMessage("Phone Number changed successfully.");
       } else if (field === "picture") {
-        setPictureSaved(true);
+        setSuccessMessage("Picture changed successfully.");
       } else if (field === "team") {
-        setTeamSaved(true);
+        setSuccessMessage("Team changed successfully.");
       }
+    } else {
+      console.log("field save failed"); // Add this line to check if the condition is being satisfied
+      setSuccessMessage("Field save failed."); // Display error message for the field
     }
   };
 
@@ -195,10 +199,8 @@ const EditProfile = () => {
                 Save
               </Button>
 
-              {firstNameSaved && (
-                <Alert severity="success">
-                  First Name is saved successfully.
-                </Alert>
+              {successMessage && (
+                <Alert severity="success">{successMessage}</Alert>
               )}
             </Box>
             <br />
