@@ -1,15 +1,15 @@
-import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
+import EditProfile from "scenes/editProfile";
+import GameManager from "scenes/gamePage";
+import GameComplete from "scenes/gamePage/GameComplete";
 import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
 import ProfilePage from "scenes/profilePage";
-import EditProfile from "scenes/editProfile";
-import GameManager from "scenes/gamePage";
 import { themeSettings } from "./theme";
-import GameComplete from "scenes/gamePage/GameComplete";
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -18,10 +18,10 @@ function App() {
 
   return (
     <div className="app">
-      <BrowserRouter>
+      <HashRouter>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Routes>
+          <Routes></Routes>
             <Route path="/" element={<LoginPage />} />
             <Route
               path="/home"
@@ -45,7 +45,7 @@ function App() {
             />
           </Routes>
         </ThemeProvider>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
