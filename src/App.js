@@ -21,7 +21,7 @@ function App() {
       <HashRouter>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Routes></Routes>
+          <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route
               path="/home"
